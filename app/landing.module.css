@@ -1,4 +1,5 @@
 .hero>* {
     font-size: 2rem;
     color: var(--primary);
+    text-shadow: 0 0 1rem var(--primary);
 }
