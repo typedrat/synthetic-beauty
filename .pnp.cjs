@@ -38,7 +38,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:b6b4e0d6440af33618430263ad83a0402529798ae309be96e74c1d90771374ba7384809dbe922351422f11f8e22b85e8842b24b31a45f8b1a495cf66732dab74#npm:13.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b6b4e0d6440af33618430263ad83a0402529798ae309be96e74c1d90771374ba7384809dbe922351422f11f8e22b85e8842b24b31a45f8b1a495cf66732dab74#npm:18.2.0"],\
-            ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
+            ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
+            ["undici", "npm:5.12.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -649,6 +650,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["braces", "npm:3.0.2"],\
             ["fill-range", "npm:7.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["busboy", [\
+        ["npm:1.6.0", {\
+          "packageLocation": "./.yarn/cache/busboy-npm-1.6.0-ebb5cbb04b-32801e2c01.zip/node_modules/busboy/",\
+          "packageDependencies": [\
+            ["busboy", "npm:1.6.0"],\
+            ["streamsearch", "npm:1.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2630,6 +2641,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["streamsearch", [\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/streamsearch-npm-1.1.0-fc3ad6536d-1cce16cea8.zip/node_modules/streamsearch/",\
+          "packageDependencies": [\
+            ["streamsearch", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["string.prototype.matchall", [\
         ["npm:4.0.8", {\
           "packageLocation": "./.yarn/cache/string.prototype.matchall-npm-4.0.8-1feb1531b6-952da3a818.zip/node_modules/string.prototype.matchall/",\
@@ -2764,7 +2784,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:b6b4e0d6440af33618430263ad83a0402529798ae309be96e74c1d90771374ba7384809dbe922351422f11f8e22b85e8842b24b31a45f8b1a495cf66732dab74#npm:13.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b6b4e0d6440af33618430263ad83a0402529798ae309be96e74c1d90771374ba7384809dbe922351422f11f8e22b85e8842b24b31a45f8b1a495cf66732dab74#npm:18.2.0"],\
-            ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
+            ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
+            ["undici", "npm:5.12.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -2877,6 +2898,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["has-bigints", "npm:1.0.2"],\
             ["has-symbols", "npm:1.0.3"],\
             ["which-boxed-primitive", "npm:1.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["undici", [\
+        ["npm:5.12.0", {\
+          "packageLocation": "./.yarn/cache/undici-npm-5.12.0-75a51aa3f4-fbc2277049.zip/node_modules/undici/",\
+          "packageDependencies": [\
+            ["undici", "npm:5.12.0"],\
+            ["busboy", "npm:1.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\
