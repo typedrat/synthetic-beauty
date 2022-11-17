@@ -2,15 +2,15 @@ import { IncomingHttpHeaders } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import { request } from 'undici';
 
-function flatten_components(components: string | string[] | undefined): string[] {
+function flatten_components_to_path(components: string | string[] | undefined): string {
     if (typeof components === 'string') {
-        return [components];
+        return components;
     }
     else if (components === undefined) {
-        return [];
+        return '';
     }
     else {
-        return components;
+        return components.join('/');
     }
 }
 
@@ -33,8 +33,8 @@ export default async function handler(proxyRequest: NextApiRequest, proxyRespons
     const host = queryParameters.get('__host');
     queryParameters.delete('__host');
 
-    const pathComponents = flatten_components(proxyRequest.query.pathComponents);
-    let targetUrl = new URL(pathComponents.join('/'), `https://${host}`);
+    const path = flatten_components_to_path(proxyRequest.query.pathComponents);
+    let targetUrl = new URL(path, `https://${host}`);
 
     let targetHeaders: IncomingHttpHeaders = JSON.parse(queryParameters.get('__headers') || '{}');
     targetHeaders.range = proxyRequest.headers.range;
