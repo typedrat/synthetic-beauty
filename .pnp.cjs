@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@next/font", "npm:13.0.3"],\
+            ["@picocss/pico", "npm:1.5.6"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
@@ -283,6 +284,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nodelib/fs.walk", "npm:1.2.8"],\
             ["@nodelib/fs.scandir", "npm:2.1.5"],\
             ["fastq", "npm:1.13.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@picocss/pico", [\
+        ["npm:1.5.6", {\
+          "packageLocation": "./.yarn/cache/@picocss-pico-npm-1.5.6-a25d2e3f94-84f730aadd.zip/node_modules/@picocss/pico/",\
+          "packageDependencies": [\
+            ["@picocss/pico", "npm:1.5.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2745,6 +2755,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["synthetic-beauty", "workspace:."],\
             ["@next/font", "npm:13.0.3"],\
+            ["@picocss/pico", "npm:1.5.6"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
