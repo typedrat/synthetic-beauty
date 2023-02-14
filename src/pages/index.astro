@@ -1,0 +1,40 @@
+---
+import "@radix-ui/colors/amber.css";
+import "@radix-ui/colors/amberDark.css";
+
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Synthetic Beauty">
+	<section class="hero">
+		<p>if <b>truth</b> is <i>beauty</i></p>
+		<p>and <u>mathematics</u> is the <b>ultimate truth</b></p>
+		<p>
+			doesn't it stand to reason that <u>mathematics</u> should be able to
+			create the <i>ultimate beauty</i>?
+		</p>
+	</section>
+	<p>
+		Synthetic Beauty is a project that allows users to create and share
+		programmatic music visualizers.
+	</p>
+</Layout>
+
+<style lang="scss">
+	.hero {
+		--text-color: hsl(39, 90%, 49.8%);
+		--background-color: hsl(32, 100%, 10.2%);
+
+		font-size: 2rem;
+		color: var(--text-color);
+		background-color: var(--background-color);
+		text-shadow: 0 0 1rem var(--text-color);
+
+		margin: 0 -100vw var(--typography-spacing-vertical);
+		padding: 0.5em 100vw;
+
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+</style>

@@ -1,0 +1,107 @@
+---
+interface Props {
+    vertical?: boolean;
+}
+
+const { vertical: isVertical = false } = Astro.props;
+---
+
+<nav class:list={[{ vertical: isVertical }]}>
+    <ul>
+        <li>
+            <a href="/">Synthetic Beauty</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a role="button" href="#">Log In with Spotify</a>
+        </li>
+    </ul>
+</nav>
+
+<style lang="scss">
+    nav {
+        margin-left: -100vw;
+        margin-right: -100vw;
+        padding-left: 100vw;
+        padding-right: 100vw;
+
+        background-color: var(--amber9);
+    }
+
+    nav,
+    nav ul {
+        display: flex;
+    }
+
+    nav {
+        --element-spacing-horizontal: 0.5rem;
+        --element-spacing-vertical: 1rem;
+        --link-spacing-vertical: 0.5rem;
+        --link-spacing-horizontal: 0.5rem;
+
+        justify-content: space-between;
+
+        ol,
+        ul {
+            align-items: center;
+            margin-bottom: 0;
+            padding: 0;
+            list-style: none;
+
+            &:first-of-type {
+                margin-left: calc(var(--element-spacing-horizontal) * -1);
+            }
+            &:last-of-type {
+                margin-right: calc(var(--element-spacing-horizontal) * -1);
+            }
+        }
+
+        li {
+            display: inline-block;
+            margin: 0;
+            padding: var(--element-spacing-vertical)
+                var(--element-spacing-horizontal);
+
+            // Minimal support for buttons and forms elements
+            > * {
+                --spacing: 0;
+            }
+        }
+
+        a,
+        [role="link"] {
+            color: black;
+
+            display: inline-block;
+            margin: calc(var(--link-spacing-vertical) * -1)
+                calc(var(--link-spacing-horizontal) * -1);
+            padding: var(--link-spacing-vertical) var(--link-spacing-horizontal);
+            border-radius: 0.25rem;
+            text-decoration: none;
+
+            &:is([aria-current], :hover, :active, :focus) {
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Vertical Nav
+    nav.vertical {
+        &,
+        ol,
+        ul,
+        li {
+            display: block;
+        }
+
+        li {
+            padding: calc(var(--element-spacing-vertical) * 0.5)
+                var(--element-spacing-horizontal);
+
+            a {
+                display: block;
+            }
+        }
+    }
+</style>
