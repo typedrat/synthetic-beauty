@@ -26,7 +26,7 @@ const { vertical: isVertical = false } = Astro.props;
         padding-left: 100vw;
         padding-right: 100vw;
 
-        background-color: var(--amber9);
+        border-bottom: 0.25em solid var(--amber9);
     }
 
     nav,
@@ -71,8 +71,6 @@ const { vertical: isVertical = false } = Astro.props;
 
         a,
         [role="link"] {
-            color: black;
-
             display: inline-block;
             margin: calc(var(--link-spacing-vertical) * -1)
                 calc(var(--link-spacing-horizontal) * -1);
