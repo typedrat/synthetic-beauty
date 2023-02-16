@@ -10,7 +10,7 @@ import NavBar from "../components/NavBar.astro";
 import "../styles/typography.scss";
 
 export interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -18,137 +18,136 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<header>
-			<NavBar />
-		</header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <header>
+            <NavBar />
+        </header>
 
-		<main>
-			<slot />
-		</main>
+        <main>
+            <slot />
+        </main>
 
-		<footer>
-			Made by
-			<a
-				href="https://github.com/typedrat"
-				target="_blank"
-				rel="noopener"
-			>
-				Alexis Williams</a
-			>
-			with
-			<a href="https://astro.build/" target="_blank" rel="noopener">
-				Astro</a
-			>.
-		</footer>
-	</body>
+        <footer>
+            Made by
+            <a
+                href="https://github.com/typedrat"
+                target="_blank"
+                rel="noopener">
+                Alexis Williams</a
+            >
+            with
+            <a href="https://astro.build/" target="_blank" rel="noopener">
+                Astro</a
+            >.
+        </footer>
+    </body>
 </html>
 
 <style is:global>
-	:root {
-		/* Fonts/Typography */
-		--font-family: "IBM Plex Mono", monospace, "Apple Color Emoji",
-			"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    :root {
+        /* Fonts/Typography */
+        --font-family: "IBM Plex Mono", monospace, "Apple Color Emoji",
+            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-		/* Spacings */
-		--spacing: 1rem;
+        /* Spacings */
+        --spacing: 1rem;
 
-		/* Spacings for typography elements */
-		--typography-spacing-vertical: 1.5rem;
-	}
+        /* Spacings for typography elements */
+        --typography-spacing-vertical: 1.5rem;
+    }
 
-	html {
-		font-family: var(--font-family);
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.5;
+    html {
+        font-family: var(--font-family);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
 
-		color: var(--gray12);
-		background-color: var(--gray1);
+        color: var(--gray12);
+        background-color: var(--gray1);
 
-		overflow-x: clip;
-	}
+        overflow-x: clip;
+    }
 
-	body {
-		width: 100%;
-		min-height: 100vh;
-		margin: 0 auto;
+    body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0 auto;
 
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-	}
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
 
-	@media (min-width: 576px) {
-		html {
-			font-size: 17px;
-		}
+    @media (min-width: 576px) {
+        html {
+            font-size: 17px;
+        }
 
-		body {
-			max-width: 510px;
-			padding-right: 0;
-			padding-left: 0;
-		}
-	}
-	@media (min-width: 768px) {
-		html {
-			font-size: 18px;
-		}
+        body {
+            max-width: 510px;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+    @media (min-width: 768px) {
+        html {
+            font-size: 18px;
+        }
 
-		body {
-			max-width: 700px;
-		}
-	}
-	@media (min-width: 992px) {
-		html {
-			font-size: 19px;
-		}
+        body {
+            max-width: 700px;
+        }
+    }
+    @media (min-width: 992px) {
+        html {
+            font-size: 19px;
+        }
 
-		body {
-			max-width: 920px;
-		}
-	}
-	@media (min-width: 1200px) {
-		html {
-			font-size: 20px;
-		}
+        body {
+            max-width: 920px;
+        }
+    }
+    @media (min-width: 1200px) {
+        html {
+            font-size: 20px;
+        }
 
-		body {
-			max-width: 1130px;
-		}
-	}
+        body {
+            max-width: 1130px;
+        }
+    }
 
-	body > header,
-	body > main,
-	body > footer {
-		width: 100%;
-		margin-right: auto;
-		margin-left: auto;
-	}
+    body > header,
+    body > main,
+    body > footer {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
-	body > footer {
-		padding: 1em 0;
-	}
+    body > footer {
+        padding: 1em 0;
+    }
 </style>
 
 <script>
-	const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
 
-	if (prefersDarkMode.matches) {
-		document.documentElement.classList.add("dark-theme");
-	}
+    if (prefersDarkMode.matches) {
+        document.documentElement.classList.add("dark-theme");
+    }
 
-	prefersDarkMode.addEventListener("change", (e) => {
-		if (e.matches) {
-			document.documentElement.classList.add("dark-theme");
-		} else {
-			document.documentElement.classList.remove("dark-theme");
-		}
-	});
+    prefersDarkMode.addEventListener("change", (e) => {
+        if (e.matches) {
+            document.documentElement.classList.add("dark-theme");
+        } else {
+            document.documentElement.classList.remove("dark-theme");
+        }
+    });
 </script>
