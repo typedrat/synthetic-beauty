@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Synthetic Beauty">
-    <section class="hero">
+    <section class="hero dark-theme">
         <p>if <b>truth</b> is <i>beauty</i></p>
         <p>and <u>mathematics</u> is the <b>ultimate truth</b></p>
         <p>
@@ -22,8 +22,8 @@ import Layout from "../layouts/Layout.astro";
 
 <style lang="scss">
     .hero {
-        --text-color: hsl(39, 90%, 49.8%);
-        --background-color: hsl(32, 100%, 10.2%);
+        --text-color: var(--amber11);
+        --background-color: var(--amber3);
 
         font-size: 2rem;
         color: var(--text-color);
