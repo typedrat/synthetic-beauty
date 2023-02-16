@@ -35,17 +35,29 @@ const { title } = Astro.props;
         </main>
 
         <footer>
-            Made by
-            <a
-                href="https://github.com/typedrat"
-                target="_blank"
-                rel="noopener">
-                Alexis Williams</a
-            >
-            with
-            <a href="https://astro.build/" target="_blank" rel="noopener">
-                Astro</a
-            >.
+            <p>
+                Made by
+                <a
+                    href="https://github.com/typedrat"
+                    target="_blank"
+                    rel="noopener">
+                    Alexis Williams</a
+                >
+                with
+                <a href="https://astro.build/" target="_blank" rel="noopener">
+                    Astro</a
+                >.
+            </p>
+            <p>
+                <small
+                    ><a
+                        href="https://github.com/typedrat/synthetic-beauty"
+                        target="_blank"
+                        rel="noopener">The source code</a
+                    > is available under the terms of the GNU Affero GPL, version
+                    3.0 or later.</small
+                >
+            </p>
         </footer>
     </body>
 </html>
@@ -129,10 +141,6 @@ const { title } = Astro.props;
         width: 100%;
         margin-right: auto;
         margin-left: auto;
-    }
-
-    body > footer {
-        padding: 1em 0;
     }
 </style>
 
