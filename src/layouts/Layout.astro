@@ -4,10 +4,8 @@ import "sanitize.css";
 import "@radix-ui/colors/gray.css";
 import "@radix-ui/colors/grayDark.css";
 
-import { Icon } from "astro-icon";
-
-import NavBar from "../components/NavBar.astro";
-import "../styles/typography.scss";
+import NavBar from "components/NavBar.astro";
+import "styles/typography.scss";
 
 export interface Props {
     title: string;
@@ -48,13 +46,15 @@ const { title } = Astro.props;
                 <small>
                     <a
                         href="https://github.com/typedrat/synthetic-beauty"
-                        target="_blank">
+                        target="_blank"
+                    >
                         The source code
                     </a>
                     is available under the terms of the
                     <a
                         href="https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)"
-                        target="_blank">
+                        target="_blank"
+                    >
                         GNU Affero GPL, version 3.0
                     </a>
                     or later.

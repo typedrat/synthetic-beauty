@@ -1,5 +1,5 @@
 ---
-import { getClientId } from "../../auth/spotifyOAuth";
+import { getClientId } from "auth/spotifyOAuth";
 
 const clientId = getClientId();
 ---
@@ -18,7 +18,7 @@ const clientId = getClientId();
         getVerifier,
         generateChallenge,
         generateAuthorizationURL,
-    } from "../../auth/spotifyOAuth";
+    } from "auth/spotifyOAuth";
 
     const clientId = document.documentElement.dataset["clientId"];
     const state = document.documentElement.dataset["state"];
