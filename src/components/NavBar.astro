@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { vertical: isVertical = false } = Astro.props;
+
+const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
 ---
 
 <nav class:list={[{ vertical: isVertical }]}>
@@ -14,7 +16,9 @@ const { vertical: isVertical = false } = Astro.props;
     </ul>
     <ul>
         <li>
-            <a role="button" href="#">Log In with Spotify</a>
+            <a role="button" href={`/auth/login?${loginParams}`}>
+                Log In with Spotify
+            </a>
         </li>
     </ul>
 </nav>

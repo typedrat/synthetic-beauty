@@ -1,0 +1,36 @@
+---
+import { getClientId } from "../../auth/spotifyOAuth";
+
+const clientId = getClientId();
+---
+
+<html data-client-id={clientId}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" href="data:," />
+        <title>Login Redirect</title>
+    </head>
+</html>
+
+<script>
+    import {
+        getVerifier,
+        generateChallenge,
+        generateAuthorizationURL,
+    } from "../../auth/spotifyOAuth";
+
+    const clientId = document.documentElement.dataset["clientId"];
+    const state = document.documentElement.dataset["state"];
+
+    if (clientId) {
+        const verifier = getVerifier();
+        const challenge = await generateChallenge(verifier);
+        const authURL = generateAuthorizationURL(clientId, challenge, state);
+
+        console.debug("Generated authorization URL:", authURL);
+        window.location.href = authURL.toString();
+    } else {
+        console.error("Couldn't find Spotify client ID!");
+    }
+</script>
