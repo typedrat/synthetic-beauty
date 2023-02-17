@@ -2,5 +2,6 @@
     "files.insertFinalNewline": true,
     "files.associations": {
         ".env.*": "properties"
-    }
+    },
+    "files.eol": "\n"
 }
