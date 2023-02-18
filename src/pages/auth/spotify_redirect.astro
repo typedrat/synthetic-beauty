@@ -37,12 +37,14 @@ import ky from "ky-universal";
 const code = Astro.url.searchParams.get("code") || "";
 const redirect_uri = import.meta.env.DEV
     ? "http://localhost:3000/auth/spotify_redirect"
-    : `${Astro.url}`;
+    : new URL("/auth/spotify_redirect", Astro.site!).toString();
 const body = new URLSearchParams({
     grant_type: "authorization_code",
     code,
     redirect_uri,
 });
+
+console.debug("token request parameters:", body);
 
 const clientId = import.meta.env.SPOTIFY_CLIENT_ID;
 const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET;
