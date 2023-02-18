@@ -2,34 +2,37 @@
 import { Icon } from "astro-icon";
 ---
 
-<a role="button" class="theme-switcher">
+<a role="button" class="theme-switcher" tabindex="0">
     <span class="on"><Icon name="bi:lightbulb-fill" height="1em" /></span>
     <span class="off"><Icon name="bi:lightbulb" height="1em" /></span>
 </a>
 
 <style lang="scss">
-    a {
+    .theme-switcher {
         display: flex;
         justify-content: center;
-
-        width: 1em;
 
         &:hover {
             cursor: pointer;
         }
     }
 
+    span {
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+
     @media (hover) {
         :global(html:not(.dark-theme)) {
-            a:not(:hover) .off,
-            a:hover .on {
+            :not(:hover) .off,
+            :hover .on {
                 display: none;
             }
         }
 
         :global(html.dark-theme) {
-            a:hover .off,
-            a:not(:hover) .on {
+            :hover .off,
+            :not(:hover) .on {
                 display: none;
             }
         }
@@ -37,13 +40,13 @@ import { Icon } from "astro-icon";
 
     @media (hover: none) {
         :global(html:not(.dark-theme)) {
-            a .off {
+            .off {
                 display: none;
             }
         }
 
         :global(html.dark-theme) {
-            a .on {
+            .on {
                 display: none;
             }
         }
@@ -53,17 +56,26 @@ import { Icon } from "astro-icon";
 <script>
     let htmlClasses = document.documentElement.classList;
 
-    document.querySelectorAll(".theme-switcher").forEach((button) =>
-        button.addEventListener("click", (event) => {
-            if (htmlClasses.contains("dark-theme")) {
-                htmlClasses.remove("dark-theme");
-                localStorage.setItem("theme", "light");
-            } else {
-                htmlClasses.add("dark-theme");
-                localStorage.setItem("theme", "dark");
-            }
+    function handler(event: Event) {
+        if (
+            event instanceof KeyboardEvent &&
+            event.key !== "Enter" &&
+            event.key !== " "
+        ) {
+            return;
+        }
 
-            event.preventDefault();
-        })
-    );
+        if (htmlClasses.contains("dark-theme")) {
+            htmlClasses.remove("dark-theme");
+            localStorage.setItem("theme", "light");
+        } else {
+            htmlClasses.add("dark-theme");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+
+    document.querySelectorAll(".theme-switcher").forEach((button) => {
+        button.addEventListener("click", handler);
+        button.addEventListener("keydown", handler);
+    });
 </script>
