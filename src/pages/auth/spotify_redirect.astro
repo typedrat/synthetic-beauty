@@ -33,10 +33,11 @@ if (!csrfNonceValid) {
 
 import Base64 from "base64-js";
 import ky from "ky-universal";
-import { getRedirectUrl } from "auth/spotifyOAuth";
 
 const code = Astro.url.searchParams.get("code") || "";
-const redirect_uri = getRedirectUrl().toString();
+const redirect_uri = import.meta.env.DEV
+    ? "http://localhost:3000/auth/spotify_redirect"
+    : new URL("/auth/spotify_redirect", Astro.site!).toString();
 const body = new URLSearchParams({
     grant_type: "authorization_code",
     code,
