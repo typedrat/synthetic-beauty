@@ -24,43 +24,49 @@ const { title } = Astro.props;
         <title>{title}</title>
     </head>
     <body>
-        <header>
-            <NavBar />
-        </header>
+        <div class="safari-overflow-trickery">
+            <div class="container">
+                <header>
+                    <NavBar />
+                </header>
 
-        <main>
-            <slot />
-        </main>
+                <main>
+                    <slot />
+                </main>
 
-        <footer>
-            <p>
-                Made by
-                <a href="https://github.com/typedrat" target="_blank">
-                    Alexis Williams
-                </a>
-                with
-                <a href="https://astro.build/" target="_blank"> Astro</a>
-                (and lots of 🥰 and 🐀).
-            </p>
-            <p>
-                <small>
-                    <a
-                        href="https://github.com/typedrat/synthetic-beauty"
-                        target="_blank"
-                    >
-                        The source code
-                    </a>
-                    is available under the terms of the
-                    <a
-                        href="https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)"
-                        target="_blank"
-                    >
-                        GNU Affero GPL, version 3.0
-                    </a>
-                    or later.
-                </small>
-            </p>
-        </footer>
+                <footer>
+                    <p>
+                        Made by
+                        <a href="https://github.com/typedrat" target="_blank">
+                            Alexis Williams
+                        </a>
+                        with
+                        <a href="https://astro.build/" target="_blank">
+                            Astro</a
+                        >
+                        (and lots of 🥰 and 🐀).
+                    </p>
+                    <p>
+                        <small>
+                            <a
+                                href="https://github.com/typedrat/synthetic-beauty"
+                                target="_blank"
+                            >
+                                The source code
+                            </a>
+                            is available under the terms of the
+                            <a
+                                href="https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)"
+                                target="_blank"
+                            >
+                                GNU Affero GPL, version 3.0
+                            </a>
+                            or later.
+                        </small>
+                    </p>
+                </footer>
+            </div>
+        </div>
     </body>
 </html>
 
@@ -85,14 +91,14 @@ const { title } = Astro.props;
 
         color: var(--gray12);
         background-color: var(--gray1);
-
-        overflow-x: hidden;
     }
 
-    body {
+    .container {
         width: 100%;
         min-height: 100vh;
         margin: 0 auto;
+        padding-left: var(--spacing);
+        padding-right: var(--spacing);
 
         display: grid;
         grid-template-rows: auto 1fr auto;
@@ -103,7 +109,7 @@ const { title } = Astro.props;
             font-size: 17px;
         }
 
-        body {
+        .container {
             max-width: 510px;
             padding-right: 0;
             padding-left: 0;
@@ -114,7 +120,7 @@ const { title } = Astro.props;
             font-size: 18px;
         }
 
-        body {
+        .container {
             max-width: 700px;
         }
     }
@@ -123,7 +129,7 @@ const { title } = Astro.props;
             font-size: 19px;
         }
 
-        body {
+        .container {
             max-width: 920px;
         }
     }
@@ -132,13 +138,13 @@ const { title } = Astro.props;
             font-size: 20px;
         }
 
-        body {
+        .container {
             max-width: 1130px;
         }
     }
 
-    body > header,
-    body > footer {
+    .container > header,
+    .container > footer {
         --dividing-line: 0.25em solid var(--amber9);
 
         margin-left: -100vw;
@@ -147,15 +153,19 @@ const { title } = Astro.props;
         padding-right: 100vw;
     }
 
-    body > header {
+    .container > header {
         border-bottom: var(--dividing-line);
     }
 
-    body > footer {
+    .container > footer {
         --typography-spacing-vertical: 0.75rem;
 
         border-top: var(--dividing-line);
         padding-top: var(--typography-spacing-vertical);
+    }
+
+    .safari-overflow-trickery {
+        overflow-x: hidden;
     }
 </style>
 
