@@ -62,6 +62,10 @@ const tokenResponse = await ky.post(
     tokenRequestOptions
 );
 
+if (!tokenResponse.ok) {
+    console.debug("auth failure:", tokenResponse);
+}
+
 const responseCode = tokenResponse.status;
 const responseBody = await tokenResponse.text();
 ---
