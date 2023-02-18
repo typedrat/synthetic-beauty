@@ -177,9 +177,13 @@ const { title } = Astro.props;
 
 <script>
     let htmlClasses = document.documentElement.classList;
+    const storedPreference = localStorage.getItem("theme");
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if (prefersDarkMode.matches) {
+    if (
+        (storedPreference !== "light" && prefersDarkMode.matches) ||
+        storedPreference === "dark"
+    ) {
         htmlClasses.add("dark-theme");
     }
 

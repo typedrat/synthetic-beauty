@@ -37,13 +37,15 @@ import { Icon } from "astro-icon";
 <script>
     let htmlClasses = document.documentElement.classList;
 
-    document
-        .querySelectorAll(".theme-switcher")
-        .forEach((button) =>
-            button.addEventListener("click", () =>
-                htmlClasses.contains("dark-theme")
-                    ? htmlClasses.remove("dark-theme")
-                    : htmlClasses.add("dark-theme")
-            )
-        );
+    document.querySelectorAll(".theme-switcher").forEach((button) =>
+        button.addEventListener("click", () => {
+            if (htmlClasses.contains("dark-theme")) {
+                htmlClasses.remove("dark-theme");
+                localStorage.setItem("theme", "light");
+            } else {
+                htmlClasses.add("dark-theme");
+                localStorage.setItem("theme", "dark");
+            }
+        })
+    );
 </script>
