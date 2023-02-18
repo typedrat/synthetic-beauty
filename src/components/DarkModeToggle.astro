@@ -19,17 +19,33 @@ import { Icon } from "astro-icon";
         }
     }
 
-    :global(html:not(.dark-theme)) {
-        a:not(:hover) .off,
-        a:hover .on {
-            display: none;
+    @media (hover) {
+        :global(html:not(.dark-theme)) {
+            a:not(:hover) .off,
+            a:hover .on {
+                display: none;
+            }
+        }
+
+        :global(html.dark-theme) {
+            a:hover .off,
+            a:not(:hover) .on {
+                display: none;
+            }
         }
     }
 
-    :global(html.dark-theme) {
-        a:hover .off,
-        a:not(:hover) .on {
-            display: none;
+    @media (hover: none) {
+        :global(html:not(.dark-theme)) {
+            a .off {
+                display: none;
+            }
+        }
+
+        :global(html.dark-theme) {
+            a .on {
+                display: none;
+            }
         }
     }
 </style>
@@ -38,7 +54,7 @@ import { Icon } from "astro-icon";
     let htmlClasses = document.documentElement.classList;
 
     document.querySelectorAll(".theme-switcher").forEach((button) =>
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
             if (htmlClasses.contains("dark-theme")) {
                 htmlClasses.remove("dark-theme");
                 localStorage.setItem("theme", "light");
@@ -46,6 +62,8 @@ import { Icon } from "astro-icon";
                 htmlClasses.add("dark-theme");
                 localStorage.setItem("theme", "dark");
             }
+
+            event.preventDefault();
         })
     );
 </script>

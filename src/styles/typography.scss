@@ -29,9 +29,16 @@ a,
     transition: background-color var(--transition), color var(--transition),
         text-decoration var(--transition), box-shadow var(--transition);
 
-    &:where([aria-current], :hover, :active, :focus) {
+    &:where([aria-current], :active, :focus) {
         color: var(--amber12);
         text-decoration: underline;
+    }
+
+    @media (hover) {
+        &:where(:hover) {
+            color: var(--amber12);
+            text-decoration: underline;
+        }
     }
 
     &:focus {
