@@ -20,10 +20,10 @@ if (redirectTo === null) {
 ///
 
 import * as jose from "jose";
-import uuid from "uuid";
+import { v4 as uuidV4 } from "uuid";
 
 const site = Astro.site!.toString();
-const nonce = uuid.v4();
+const nonce = uuidV4();
 const key = getEncryptionKey();
 
 const state = await new jose.EncryptJWT({
