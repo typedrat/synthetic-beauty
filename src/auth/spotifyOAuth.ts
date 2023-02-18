@@ -8,14 +8,20 @@ export function getClientId(): string {
     return clientId;
 }
 
+export function getRedirectUrl(): URL {
+    return new URL(
+        "/auth/spotify_redirect",
+        import.meta.env.PROD
+            ? `https://${import.meta.env.PUBLIC_VERCEL_URL}`
+            : `http://localhost:3000`
+    );
+}
+
 export function generateAuthorizationURL(
     client_id: string,
     state?: string
 ): URL {
-    const redirect_uri = new URL(
-        "/auth/spotify_redirect",
-        window.location.href
-    ).toString();
+    const redirect_uri = getRedirectUrl().toString();
 
     let params = new URLSearchParams({
         client_id,

@@ -4,5 +4,5 @@ interface ImportMetaEnv {
     SPOTIFY_CLIENT_ID?: string;
     SPOTIFY_CLIENT_SECRET?: string;
     ENCRYPTION_SECRET?: string;
-    ENCRYPTION_ALG?: string;
+    PUBLIC_VERCEL_URL?: string;
 }
