@@ -4,6 +4,7 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
+    site: "https://synthetic.beauty",
     integrations: [react()],
     output: "server",
     adapter: vercel(),

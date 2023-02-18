@@ -1,0 +1,114 @@
+---
+import jose from "jose";
+
+import { getEncryptionKey } from "auth/getEncryptionKey";
+
+const state = Astro.url.searchParams.get("state") || "";
+let csrfNonceValid = false;
+let redirectTo = "/";
+
+if (Astro.cookies.has("csrf-nonce")) {
+    const site = Astro.site!.toString();
+    const key = getEncryptionKey();
+    const csrfNonce = Astro.cookies.get("csrf-nonce").value!;
+    Astro.cookies.delete("csrf-nonce");
+
+    const { payload } = await jose.jwtDecrypt(state, key, {
+        issuer: site,
+        audience: site,
+    });
+
+    if (csrfNonce === payload.nonce && typeof payload.redirectTo === "string") {
+        csrfNonceValid = true;
+        redirectTo = payload.redirectTo;
+    }
+}
+
+if (!csrfNonceValid) {
+    console.warn("Invalid login CSRF nonce");
+    return Astro.redirect("/", 302);
+}
+
+///
+
+import Base64 from "base64-js";
+import ky from "ky-universal";
+
+const code = Astro.url.searchParams.get("code") || "";
+const redirect_uri = import.meta.env.DEV
+    ? "http://localhost:3000/auth/spotify_redirect"
+    : `${Astro.url}`;
+const body = new URLSearchParams({
+    grant_type: "authorization_code",
+    code,
+    redirect_uri,
+});
+
+const clientId = import.meta.env.SPOTIFY_CLIENT_ID;
+const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET;
+const authSlug = Base64.fromByteArray(
+    new TextEncoder().encode(`${clientId}:${clientSecret}`)
+);
+const tokenRequestOptions = {
+    body,
+    headers: {
+        Authorization: `Basic ${authSlug}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+};
+
+const tokenResponse = await ky.post(
+    "https://accounts.spotify.com/api/token",
+    tokenRequestOptions
+);
+
+const responseCode = tokenResponse.status;
+const responseBody = await tokenResponse.text();
+---
+
+<html
+    data-redirect-to={redirectTo}
+    data-response-code={responseCode}
+    data-response-body={responseBody}
+>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" href="data:," />
+        <title>Login Redirect</title>
+    </head>
+</html>
+
+<script>
+    import dayjs from "dayjs";
+
+    const { redirectTo, responseBody: responseBodyStr } =
+        document.documentElement.dataset;
+    const responseBody = JSON.parse(responseBodyStr!);
+    let targetPath = "/";
+
+    console.debug(responseBody);
+
+    if (
+        typeof responseBody === "object" &&
+        responseBody !== null &&
+        typeof responseBody.access_token === "string" &&
+        typeof responseBody.refresh_token === "string" &&
+        typeof responseBody.expires_in === "number"
+    ) {
+        const { access_token, refresh_token } = responseBody;
+        const expiration = dayjs().add(responseBody.expires_in, "second");
+
+        window.localStorage.setItem("accessToken", access_token);
+        window.localStorage.setItem("refreshToken", refresh_token);
+        window.localStorage.setItem(
+            "accessTokenExpiration",
+            expiration.toISOString()
+        );
+
+        targetPath = redirectTo || "/";
+
+        const targetUrl = new URL(targetPath, location.href);
+        location.href = `${targetUrl}`;
+    }
+</script>

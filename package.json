@@ -18,13 +18,18 @@
         "@radix-ui/colors": "^0.1.8",
         "@types/react": "^18.0.21",
         "@types/react-dom": "^18.0.6",
+        "@types/uuid": "^9.0.0",
         "astro": "^2.0.13",
         "astro-icon": "^0.8.0",
         "base64-js": "^1.5.1",
+        "dayjs": "^1.11.7",
         "jose": "^4.12.0",
+        "ky": "^0.33.2",
+        "ky-universal": "^0.11.0",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "sanitize.css": "^13.0.0"
+        "sanitize.css": "^13.0.0",
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
         "prettier": "^2.8.4",

@@ -2,9 +2,50 @@
 import { getClientId } from "auth/spotifyOAuth";
 
 const clientId = getClientId();
+
+///
+
+import { getEncryptionKey } from "auth/getEncryptionKey";
+import { isRedirectSafe } from "auth/isRedirectSafe";
+
+let redirectTo = Astro.url.searchParams.get("redirect");
+
+if (redirectTo === null) {
+    redirectTo = "/";
+} else if (!isRedirectSafe(redirectTo)) {
+    console.warn("Unsafe redirection sanitized:", redirectTo);
+    redirectTo = "/";
+}
+
+///
+
+import jose from "jose";
+import uuid from "uuid";
+
+const site = Astro.site!.toString();
+const nonce = uuid.v4();
+const key = getEncryptionKey();
+
+const state = await new jose.EncryptJWT({
+    nonce,
+    redirectTo,
+})
+    .setProtectedHeader({ alg: "dir", enc: "A256CBC-HS512" })
+    .setIssuedAt()
+    .setIssuer(site)
+    .setAudience(site)
+    .setExpirationTime("1h")
+    .encrypt(key);
+
+Astro.cookies.set("csrf-nonce", nonce, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    maxAge: 60 * 60, // 1 hour
+});
 ---
 
-<html data-client-id={clientId}>
+<html data-client-id={clientId} data-state={state}>
     <head>
         <meta charset="UTF-8" />
         <meta name="generator" content={Astro.generator} />
@@ -14,19 +55,13 @@ const clientId = getClientId();
 </html>
 
 <script>
-    import {
-        getVerifier,
-        generateChallenge,
-        generateAuthorizationURL,
-    } from "auth/spotifyOAuth";
+    import { generateAuthorizationURL } from "auth/spotifyOAuth";
 
     const clientId = document.documentElement.dataset["clientId"];
     const state = document.documentElement.dataset["state"];
 
     if (clientId) {
-        const verifier = getVerifier();
-        const challenge = await generateChallenge(verifier);
-        const authURL = generateAuthorizationURL(clientId, challenge, state);
+        const authURL = generateAuthorizationURL(clientId, state);
 
         console.debug("Generated authorization URL:", authURL);
         window.location.href = authURL.toString();
