@@ -5,6 +5,8 @@ import "@radix-ui/colors/gray.css";
 import "@radix-ui/colors/grayDark.css";
 
 import NavBar from "components/NavBar.astro";
+import { Content as FooterContent } from "components/footer.md";
+import "styles/container.scss";
 import "styles/typography.scss";
 
 export interface Props {
@@ -35,35 +37,7 @@ const { title } = Astro.props;
                 </main>
 
                 <footer>
-                    <p>
-                        Made by
-                        <a href="https://github.com/typedrat" target="_blank">
-                            Alexis Williams</a
-                        >
-                        with
-                        <a href="https://astro.build/" target="_blank">
-                            Astro</a
-                        >
-                        (and lots of 🥰 and 🐀).
-                    </p>
-                    <p>
-                        <small>
-                            <a
-                                href="https://github.com/typedrat/synthetic-beauty"
-                                target="_blank"
-                            >
-                                The source code</a
-                            >
-                            is available under the terms of the
-                            <a
-                                href="https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)"
-                                target="_blank"
-                            >
-                                GNU Affero GPL, version 3.0</a
-                            >
-                            or later.
-                        </small>
-                    </p>
+                    <FooterContent />
                 </footer>
             </div>
         </div>
@@ -88,69 +62,14 @@ const { title } = Astro.props;
     }
 
     html {
-        font-family: var(--font-family);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.5;
-
         color: var(--gray12);
         background-color: var(--gray1);
 
         transition: background-color var(--transition), color var(--transition);
     }
 
-    .container {
-        width: 100%;
-        min-height: 100vh;
-        margin: 0 auto;
-        padding-left: var(--spacing);
-        padding-right: var(--spacing);
-
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-    }
-
-    @media (min-width: 576px) {
-        html {
-            font-size: 17px;
-        }
-
-        .container {
-            max-width: 510px;
-            padding-right: 0;
-            padding-left: 0;
-        }
-    }
-    @media (min-width: 768px) {
-        html {
-            font-size: 18px;
-        }
-
-        .container {
-            max-width: 700px;
-        }
-    }
-    @media (min-width: 992px) {
-        html {
-            font-size: 19px;
-        }
-
-        .container {
-            max-width: 920px;
-        }
-    }
-    @media (min-width: 1200px) {
-        html {
-            font-size: 20px;
-        }
-
-        .container {
-            max-width: 1130px;
-        }
-    }
-
-    .container > header,
-    .container > footer {
+    header,
+    footer {
         --dividing-line: 0.25em solid var(--amber9);
 
         margin-left: -100vw;
@@ -159,11 +78,11 @@ const { title } = Astro.props;
         padding-right: 100vw;
     }
 
-    .container > header {
+    header {
         border-bottom: var(--dividing-line);
     }
 
-    .container > footer {
+    footer {
         --typography-spacing-vertical: 0.75rem;
 
         border-top: var(--dividing-line);

@@ -10,4 +10,5 @@ module.exports = {
     ],
     tabWidth: 4,
     bracketSameLine: false,
+    proseWrap: "always",
 };
