@@ -14,11 +14,11 @@ const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
             <a href="/">Synthetic Beauty</a>
         </li>
     </ul>
-    <ul>
+    <ul class="right-items">
         <li>
             <a role="button" href={`/auth/login?${loginParams}`}>
-                Log In with Spotify
-            </a>
+                Log In with Spotify</a
+            >
         </li>
     </ul>
 </nav>
@@ -96,5 +96,9 @@ const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
                 display: block;
             }
         }
+    }
+
+    .right-items {
+        text-align: right;
     }
 </style>

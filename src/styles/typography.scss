@@ -21,8 +21,6 @@ ul {
 // 1. Remove the gray background on active links in IE 10
 a,
 [role="link"] {
-    display: inline-block;
-
     outline: none;
     background-color: transparent; // 1
     color: var(--amber11);
