@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<a role="button" class="theme-switcher">
+    <span class="on"><Icon name="bi:lightbulb-fill" height="1em" /></span>
+    <span class="off"><Icon name="bi:lightbulb" height="1em" /></span>
+</a>
+
+<style lang="scss">
+    a {
+        display: flex;
+        justify-content: center;
+
+        width: 1em;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    :global(html:not(.dark-theme)) {
+        a:not(:hover) .off,
+        a:hover .on {
+            display: none;
+        }
+    }
+
+    :global(html.dark-theme) {
+        a:hover .off,
+        a:not(:hover) .on {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    let htmlClasses = document.documentElement.classList;
+
+    document
+        .querySelectorAll(".theme-switcher")
+        .forEach((button) =>
+            button.addEventListener("click", () =>
+                htmlClasses.contains("dark-theme")
+                    ? htmlClasses.remove("dark-theme")
+                    : htmlClasses.add("dark-theme")
+            )
+        );
+</script>

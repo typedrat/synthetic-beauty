@@ -1,4 +1,6 @@
 ---
+import DarkModeToggle from "components/DarkModeToggle.astro";
+
 interface Props {
     vertical?: boolean;
 }
@@ -15,6 +17,7 @@ const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
         </li>
     </ul>
     <ul class="right-items">
+        <li><DarkModeToggle /></li>
         <li>
             <a role="button" href={`/auth/login?${loginParams}`}>
                 Log In with Spotify</a

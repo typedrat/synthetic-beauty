@@ -26,8 +26,8 @@ a,
     color: var(--amber11);
     text-decoration: none;
 
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
-        text-decoration 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: background-color var(--transition), color var(--transition),
+        text-decoration var(--transition), box-shadow var(--transition);
 
     &:where([aria-current], :hover, :active, :focus) {
         color: var(--amber12);
