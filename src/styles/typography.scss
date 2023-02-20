@@ -1,8 +1,3 @@
-@import "@radix-ui/colors/amber.css";
-@import "@radix-ui/colors/amberDark.css";
-@import "@radix-ui/colors/amberA.css";
-@import "@radix-ui/colors/amberDarkA.css";
-
 address,
 blockquote,
 dl,
@@ -23,26 +18,26 @@ a,
 [role="link"] {
     outline: none;
     background-color: transparent; // 1
-    color: var(--amber11);
+    color: var(--primary11);
     text-decoration: none;
 
     transition: background-color var(--transition), color var(--transition),
         text-decoration var(--transition), box-shadow var(--transition);
 
     &:where([aria-current], :active, :focus) {
-        color: var(--amber12);
+        color: var(--primary12);
         text-decoration: underline;
     }
 
     @media (hover) {
         &:where(:hover) {
-            color: var(--amber12);
+            color: var(--primary12);
             text-decoration: underline;
         }
     }
 
     &:focus {
-        background-color: var(--amberA5);
+        background-color: var(--primaryA5);
     }
 }
 
@@ -126,13 +121,13 @@ blockquote {
     margin: var(--typography-spacing-vertical) 0;
     padding: var(--spacing);
     border-right: none;
-    border-left: 0.25rem solid var(--amber11);
-    border-inline-start: 0.25rem solid var(--amber11);
+    border-left: 0.25rem solid var(--primary11);
+    border-inline-start: 0.25rem solid var(--primary11);
     border-inline-end: none;
 
     footer {
         margin-top: calc(var(--typography-spacing-vertical) * 0.5);
-        color: var(--amber11);
+        color: var(--primary11);
     }
 }
 
@@ -146,6 +141,6 @@ abbr[title] {
 
 // selection
 ::selection {
-    color: var(--amber12);
-    background-color: var(--amberA5);
+    color: var(--primary12);
+    background-color: var(--primaryA5);
 }

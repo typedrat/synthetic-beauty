@@ -1,9 +1,6 @@
-html {
-    font-family: var(--font-family);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-}
+@use "sass:map";
+
+@use "./responsive";
 
 .container {
     width: 100%;
@@ -16,41 +13,17 @@ html {
     grid-template-rows: auto 1fr auto;
 }
 
-@media (min-width: 576px) {
-    html {
-        font-size: 17px;
-    }
-
+@media (min-width: map.get(responsive.$breakpoints, "sm")) {
     .container {
-        max-width: 510px;
         padding-right: 0;
         padding-left: 0;
     }
 }
-@media (min-width: 768px) {
-    html {
-        font-size: 18px;
-    }
 
-    .container {
-        max-width: 700px;
-    }
-}
-@media (min-width: 992px) {
-    html {
-        font-size: 19px;
-    }
-
-    .container {
-        max-width: 920px;
-    }
-}
-@media (min-width: 1200px) {
-    html {
-        font-size: 20px;
-    }
-
-    .container {
-        max-width: 1130px;
+@each $name, $max-width in responsive.$viewports {
+    @media (min-width: map.get(responsive.$breakpoints, $name)) {
+        .container {
+            max-width: $max-width;
+        }
     }
 }

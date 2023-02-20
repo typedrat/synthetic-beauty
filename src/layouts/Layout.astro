@@ -1,12 +1,11 @@
 ---
 import "@fontsource/ibm-plex-mono";
 import "sanitize.css";
-import "@radix-ui/colors/gray.css";
-import "@radix-ui/colors/grayDark.css";
 
 import NavBar from "components/NavBar.astro";
 import { Content as FooterContent } from "components/footer.md";
 import "styles/container.scss";
+import "styles/theme.scss";
 import "styles/typography.scss";
 
 export interface Props {
@@ -45,32 +44,13 @@ const { title } = Astro.props;
 </html>
 
 <style>
-    :root {
-        /* Fonts/Typography */
-        --font-family: "IBM Plex Mono", monospace, "Apple Color Emoji",
-            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-        /* Spacings */
-        --spacing: 1rem;
-
-        /* Spacings for typography elements */
-        --typography-spacing-vertical: 1.5rem;
-    }
-
-    .transitions-ready {
-        --transition: 0.2s ease-in-out;
-    }
-
-    html {
-        color: var(--gray12);
-        background-color: var(--gray1);
-
-        transition: background-color var(--transition), color var(--transition);
+    .safari-overflow-trickery {
+        overflow-x: hidden;
     }
 
     header,
     footer {
-        --dividing-line: 0.25em solid var(--amber9);
+        --dividing-line: 0.25em solid var(--primary9);
 
         margin-left: -100vw;
         margin-right: -100vw;
@@ -87,10 +67,6 @@ const { title } = Astro.props;
 
         border-top: var(--dividing-line);
         padding-top: var(--typography-spacing-vertical);
-    }
-
-    .safari-overflow-trickery {
-        overflow-x: hidden;
     }
 </style>
 
