@@ -4,6 +4,8 @@ specifiers:
   '@astrojs/react': ^2.0.2
   '@astrojs/vercel': ^3.1.2
   '@fontsource/ibm-plex-mono': ^4.5.13
+  '@nanostores/persistent': ^0.7.0
+  '@nanostores/react': ^0.4.1
   '@radix-ui/colors': ^0.1.8
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -15,6 +17,7 @@ specifiers:
   jose: ^4.12.0
   ky: ^0.33.2
   ky-universal: ^0.11.0
+  nanostores: ^0.7.4
   prettier: ^2.8.4
   prettier-plugin-astro: ^0.8.0
   react: ^18.0.0
@@ -27,6 +30,8 @@ dependencies:
   '@astrojs/react': 2.0.2_fxtgt6bjwd6p4cwoordejim2zi
   '@astrojs/vercel': 3.1.2_astro@2.0.13+react@18.2.0
   '@fontsource/ibm-plex-mono': 4.5.13
+  '@nanostores/persistent': 0.7.0_nanostores@0.7.4
+  '@nanostores/react': 0.4.1_nkfnbc2tpc77iht7asm3uqwau4
   '@radix-ui/colors': 0.1.8
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -38,6 +43,7 @@ dependencies:
   jose: 4.12.0
   ky: 0.33.2
   ky-universal: 0.11.0_ky@0.33.2
+  nanostores: 0.7.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   sanitize.css: 13.0.0
@@ -678,6 +684,27 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@nanostores/persistent/0.7.0_nanostores@0.7.4:
+    resolution: {integrity: sha512-4PAInL/T1hbftZUJ0cmgdFHBMalUoq7BUXFBy7QfyMv/8X3LPTYNh/yxspL7+J+XM3UNvVI7IFRMMs6FBasjhQ==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    peerDependencies:
+      nanostores: ^0.7.0
+    dependencies:
+      nanostores: 0.7.4
+    dev: false
+
+  /@nanostores/react/0.4.1_nkfnbc2tpc77iht7asm3uqwau4:
+    resolution: {integrity: sha512-lsv0CYrMxczbXtoV/mxFVEoL/uVjEjseoP89srO/5yNAOkJka+dSFS7LYyWEbuvCPO7EgbtkvRpO5V+OztKQOw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    peerDependencies:
+      nanostores: ^0.7.0
+      react: '>=18.0.0'
+    dependencies:
+      nanostores: 0.7.4
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:
@@ -2553,6 +2580,11 @@ packages:
     hasBin: true
     dev: false
 
+  /nanostores/0.7.4:
+    resolution: {integrity: sha512-MBeUVt7NBcXqh7AGT+KSr3O0X/995CZsvcP2QEMP+PXFwb07qv3Vjyq+EX0yS8f12Vv3Tn2g/BvK/OZoMhJlOQ==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    dev: false
+
   /nlcst-to-string/3.1.1:
     resolution: {integrity: sha512-63mVyqaqt0cmn2VcI2aH6kxe1rLAmSROqHMA0i4qqg1tidkfExgpb0FGMikMCn86mw5dFtBtEANfmSSK7TjNHw==}
     dependencies:
@@ -3428,6 +3460,14 @@ packages:
       browserslist: 4.21.5
       escalade: 3.1.1
       picocolors: 1.0.0
+    dev: false
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /util-deprecate/1.0.2:

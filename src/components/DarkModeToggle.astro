@@ -60,22 +60,14 @@ const { class: className } = Astro.props;
 </style>
 
 <script>
-    let htmlClasses = document.documentElement.classList;
+    import { toggleSiteTheme } from "stores/theme";
 
     class DarkModeToggle extends HTMLElement {
         constructor() {
             super();
 
             const button = this.querySelector("button")!;
-            button.addEventListener("click", () => {
-                if (htmlClasses.contains("dark-theme")) {
-                    htmlClasses.remove("dark-theme");
-                    localStorage.setItem("theme", "light");
-                } else {
-                    htmlClasses.add("dark-theme");
-                    localStorage.setItem("theme", "dark");
-                }
-            });
+            button.addEventListener("click", () => toggleSiteTheme());
         }
     }
 

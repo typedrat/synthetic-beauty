@@ -72,21 +72,23 @@ const { title } = Astro.props;
 
 <script>
     let htmlClasses = document.documentElement.classList;
-    const storedPreference = localStorage.getItem("theme");
+
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if (
-        (storedPreference !== "light" && prefersDarkMode.matches) ||
-        storedPreference === "dark"
-    ) {
+    if (prefersDarkMode.matches) {
         htmlClasses.add("dark-theme");
     }
 
-    prefersDarkMode.addEventListener("change", (e) =>
-        e.matches
-            ? htmlClasses.add("dark-theme")
-            : htmlClasses.remove("dark-theme")
-    );
+    import { siteTheme } from "stores/theme";
+    siteTheme.subscribe((newValue) => {
+        if (newValue === "dark") {
+            htmlClasses.add("dark-theme");
+        } else if (newValue === "light") {
+            htmlClasses.remove("dark-theme");
+        }
+    });
+
+    ///
 
     addEventListener("load", () => htmlClasses.add("transitions-ready"));
 </script>
