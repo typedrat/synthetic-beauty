@@ -1,3 +1,5 @@
+@use "../../styles/addHoverIf" as *;
+
 $horizontal-spacing: 1rem;
 $vertical-spacing: 0.5rem;
 
@@ -38,10 +40,10 @@ $vertical-spacing: 0.5rem;
 
     transition: color var(--transition) background-color var(--transition);
 
-    // @include addHoverIf.add-hover-if("[aria-current], :focus-visible") {
-    //     background-color: var(--primary4);
-    //     text-decoration: none;
-    // }
+    @include add-hover-if("[aria-current], :focus-visible") {
+        background-color: var(--primary4);
+        text-decoration: none;
+    }
 
     &:active {
         background-color: var(--primary5);
