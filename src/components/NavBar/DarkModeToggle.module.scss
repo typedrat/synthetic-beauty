@@ -14,14 +14,14 @@
 }
 
 @media (hover) {
-    :global html:not(.dark-theme) {
+    :global(html:not(.dark-theme)) {
         :hover > .darkModeToggleLabel,
         :not(:hover) > .lightModeToggleLabel {
             display: inline-block;
         }
     }
 
-    :global html.dark-theme {
+    :global(html.dark-theme) {
         :hover > .lightModeToggleLabel,
         :not(:hover) > .darkModeToggleLabel {
             display: inline-block;
@@ -30,11 +30,11 @@
 }
 
 @media (hover: none) {
-    :global html:not(.dark-theme) .darkModeToggleLabel {
+    :global(html:not(.dark-theme)) .darkModeToggleLabel {
         display: inline-block;
     }
 
-    :global html.dark-theme .lightModeToggleLabel {
+    :global(html.dark-theme) .lightModeToggleLabel {
         display: inline-block;
     }
 }
