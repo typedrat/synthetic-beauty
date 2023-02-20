@@ -1,54 +1,60 @@
 ---
 import { Icon } from "astro-icon";
+
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<a role="button" class="theme-switcher" tabindex="0">
-    <span class="on"><Icon name="bi:lightbulb-fill" height="1em" /></span>
-    <span class="off"><Icon name="bi:lightbulb" height="1em" /></span>
-</a>
+<dark-mode-toggle>
+    <button class={className}>
+        <Icon name="bi:lightbulb-fill" class="lightModeToggleLabel" />
+        <Icon name="bi:lightbulb" class="darkModeToggleLabel" />
+    </button>
+</dark-mode-toggle>
 
 <style lang="scss">
-    .theme-switcher {
-        display: flex;
-        justify-content: center;
-
-        &:hover {
-            cursor: pointer;
-        }
+    button {
+        background: unset;
+        border: unset;
+        color: unset;
+        font-family: unset;
+        font-size: unset;
     }
 
-    span {
-        margin-left: 0.25em;
-        margin-right: 0.25em;
+    .lightModeToggleLabel,
+    .darkModeToggleLabel {
+        display: none;
+
+        width: 1em;
+        height: 1em;
     }
 
     @media (hover) {
         :global(html:not(.dark-theme)) {
-            :not(:hover) .off,
-            :hover .on {
-                display: none;
+            :hover > .darkModeToggleLabel,
+            :not(:hover) > .lightModeToggleLabel {
+                display: inline-block;
             }
         }
 
         :global(html.dark-theme) {
-            :hover .off,
-            :not(:hover) .on {
-                display: none;
+            :hover > .darkModeToggleLabel,
+            :not(:hover) > .lightModeToggleLabel {
+                display: inline-block;
             }
         }
     }
 
     @media (hover: none) {
-        :global(html:not(.dark-theme)) {
-            .off {
-                display: none;
-            }
+        :global(html:not(.dark-theme)) .lightModeToggleLabel {
+            display: inline-block;
         }
 
-        :global(html.dark-theme) {
-            .on {
-                display: none;
-            }
+        :global(html.dark-theme) .darkModeToggleLabel {
+            display: inline-block;
         }
     }
 </style>
@@ -56,26 +62,22 @@ import { Icon } from "astro-icon";
 <script>
     let htmlClasses = document.documentElement.classList;
 
-    function handler(event: Event) {
-        if (
-            event instanceof KeyboardEvent &&
-            event.key !== "Enter" &&
-            event.key !== " "
-        ) {
-            return;
-        }
+    class DarkModeToggle extends HTMLElement {
+        constructor() {
+            super();
 
-        if (htmlClasses.contains("dark-theme")) {
-            htmlClasses.remove("dark-theme");
-            localStorage.setItem("theme", "light");
-        } else {
-            htmlClasses.add("dark-theme");
-            localStorage.setItem("theme", "dark");
+            const button = this.querySelector("button")!;
+            button.addEventListener("click", () => {
+                if (htmlClasses.contains("dark-theme")) {
+                    htmlClasses.remove("dark-theme");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    htmlClasses.add("dark-theme");
+                    localStorage.setItem("theme", "dark");
+                }
+            });
         }
     }
 
-    document.querySelectorAll(".theme-switcher").forEach((button) => {
-        button.addEventListener("click", handler);
-        button.addEventListener("keydown", handler);
-    });
+    customElements.define("dark-mode-toggle", DarkModeToggle);
 </script>
