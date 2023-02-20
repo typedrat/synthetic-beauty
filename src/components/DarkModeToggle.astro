@@ -41,19 +41,19 @@ const { class: className } = Astro.props;
         }
 
         :global(html.dark-theme) {
-            :hover > .darkModeToggleLabel,
-            :not(:hover) > .lightModeToggleLabel {
+            :hover > .lightModeToggleLabel,
+            :not(:hover) > .darkModeToggleLabel {
                 display: inline-block;
             }
         }
     }
 
     @media (hover: none) {
-        :global(html:not(.dark-theme)) .lightModeToggleLabel {
+        :global(html:not(.dark-theme)) .darkModeToggleLabel {
             display: inline-block;
         }
 
-        :global(html.dark-theme) .darkModeToggleLabel {
+        :global(html.dark-theme) .lightModeToggleLabel {
             display: inline-block;
         }
     }

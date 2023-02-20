@@ -1,5 +1,4 @@
 // Breakpoints
-// 'null' disable the breakpoint
 $breakpoints: (
     xs: 0,
     sm: 576px,
@@ -10,9 +9,8 @@ $breakpoints: (
 
 // Viewports
 $viewports: (
-    // 'null' disable the viewport on a breakpoint
     sm: 510px,
     md: 700px,
     lg: 920px,
-    xl: 1130px
+    xl: 1130px,
 ) !default;

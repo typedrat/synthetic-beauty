@@ -1,0 +1,11 @@
+@mixin add-hover-if($sels...) {
+    &:where(#{$sels}) {
+        @content;
+    }
+
+    @media (hover) {
+        &:where(:hover) {
+            @content;
+        }
+    }
+}

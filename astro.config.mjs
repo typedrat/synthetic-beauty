@@ -8,4 +8,14 @@ export default defineConfig({
     integrations: [react()],
     output: "server",
     adapter: vercel(),
+
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    includePaths: ["./src"],
+                },
+            },
+        },
+    },
 });

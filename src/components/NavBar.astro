@@ -13,13 +13,17 @@ const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
 <nav class:list={[{ vertical: isVertical }]}>
     <ul>
         <li>
-            <a href="/">Synthetic Beauty</a>
+            <a href="/" class="navbar-item">Synthetic Beauty</a>
         </li>
     </ul>
-    <ul class="right-items">
-        <li><DarkModeToggle /></li>
+    <ul>
+        <li><DarkModeToggle class="navbar-item" /></li>
         <li>
-            <a role="button" href={`/auth/login?${loginParams}`}>
+            <a
+                role="button"
+                href={`/auth/login?${loginParams}`}
+                class="navbar-item"
+            >
                 Log In with Spotify</a
             >
         </li>
@@ -27,81 +31,60 @@ const loginParams = new URLSearchParams({ redirect: Astro.url.pathname });
 </nav>
 
 <style lang="scss">
-    nav,
-    nav ul {
-        display: flex;
-    }
+    @use "sass:selector";
+
+    @use "styles/addHoverIf" as *;
+    @use "styles/theme";
+
+    $horizontal-spacing: 1em;
+    $vertical-spacing: 0.5em;
 
     nav {
-        --element-spacing-horizontal: 0.5rem;
-        --element-spacing-vertical: 1rem;
-        --link-spacing-vertical: 0.5rem;
-        --link-spacing-horizontal: 0.5rem;
-
+        display: flex;
         justify-content: space-between;
 
-        ol,
-        ul {
+        > :global(ul) {
+            display: flex;
             align-items: center;
             margin-bottom: 0;
             padding: 0;
-            list-style: none;
 
-            &:first-of-type {
-                margin-left: calc(var(--element-spacing-horizontal) * -1);
+            > :global(li) {
+                display: inline-block;
+                margin-bottom: 0;
+
+                list-style: none;
             }
-            &:last-of-type {
-                margin-right: calc(var(--element-spacing-horizontal) * -1);
+
+            &:first-child {
+                margin-left: -$horizontal-spacing;
             }
-        }
 
-        li {
-            display: inline-block;
-            margin: 0;
-            padding: var(--element-spacing-vertical)
-                var(--element-spacing-horizontal);
-
-            // Minimal support for buttons and forms elements
-            > * {
-                --spacing: 0;
-            }
-        }
-
-        a,
-        [role="link"] {
-            display: inline-block;
-            margin: calc(var(--link-spacing-vertical) * -1)
-                calc(var(--link-spacing-horizontal) * -1);
-            padding: var(--link-spacing-vertical) var(--link-spacing-horizontal);
-            border-radius: 0.25rem;
-            text-decoration: none;
-
-            &:is([aria-current], :hover, :active, :focus) {
-                text-decoration: none;
+            &:last-child {
+                margin-right: -$horizontal-spacing;
             }
         }
     }
 
-    // Vertical Nav
-    nav.vertical {
-        &,
-        ol,
-        ul,
-        li {
-            display: block;
+    .navbar-item {
+        transition: color var(--transition) background-color var(--transition);
+
+        padding: $vertical-spacing $horizontal-spacing;
+        cursor: pointer;
+
+        color: var(--primary11);
+        background-color: transparent;
+
+        @include add-hover-if("[aria-current], :focus-visible") {
+            background-color: var(--primary4);
         }
 
-        li {
-            padding: calc(var(--element-spacing-vertical) * 0.5)
-                var(--element-spacing-horizontal);
-
-            a {
-                display: block;
-            }
+        &:active {
+            background-color: var(--primary5);
         }
-    }
 
-    .right-items {
-        text-align: right;
+        &:focus-visible {
+            outline: none;
+        }
     }
 </style>
