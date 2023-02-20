@@ -2,12 +2,12 @@
 import "@fontsource/ibm-plex-mono";
 import "sanitize.css";
 
-import { Content as FooterContent } from "components/footer.md";
-import NavBar from "components/NavBar";
+import { Content as FooterContent } from "../components/footer.md";
+import NavBar from "../components/NavBar";
 
-import "styles/container.scss";
-import "styles/theme.scss";
-import "styles/typography.scss";
+import "../styles/container.scss";
+import "../styles/theme.scss";
+import "../styles/typography.scss";
 
 export interface Props {
     title: string;
@@ -77,7 +77,7 @@ const { title } = Astro.props;
 <script>
     let htmlClasses = document.documentElement.classList;
 
-    import { siteTheme } from "stores/theme";
+    import { siteTheme } from "../stores/theme";
     siteTheme.subscribe((newValue) => {
         if (newValue === "dark") {
             htmlClasses.add("dark-theme");

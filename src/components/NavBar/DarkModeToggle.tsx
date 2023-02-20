@@ -1,7 +1,7 @@
 import LightMode from "~icons/bi/lightbulb-fill";
 import DarkMode from "~icons/bi/lightbulb";
 
-import { toggleSiteTheme } from "stores/theme";
+import { toggleSiteTheme } from "../../stores/theme";
 import styles from "./DarkModeToggle.module.scss";
 
 export type DarkModeToggleProps = {
