@@ -44,15 +44,15 @@ const { title } = Astro.props;
     </body>
 </html>
 
-<style>
+<style lang="scss">
     .safari-overflow-trickery {
         overflow-x: hidden;
     }
 
+    $dividing-line: 0.25rem solid var(--primary9);
+
     header,
     footer {
-        --dividing-line: 0.25rem solid var(--primary9);
-
         margin-left: -100vw;
         margin-right: -100vw;
         padding-left: 100vw;
@@ -60,13 +60,16 @@ const { title } = Astro.props;
     }
 
     header {
-        border-bottom: var(--dividing-line);
+        background-color: var(--primary3);
+        border-bottom: $dividing-line;
+
+        transition: background-color var(--transition);
     }
 
     footer {
         --typography-spacing-vertical: 0.75rem;
 
-        border-top: var(--dividing-line);
+        border-top: $dividing-line;
         padding-top: var(--typography-spacing-vertical);
     }
 </style>
@@ -74,18 +77,20 @@ const { title } = Astro.props;
 <script>
     let htmlClasses = document.documentElement.classList;
 
-    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
-
-    if (prefersDarkMode.matches) {
-        htmlClasses.add("dark-theme");
-    }
-
     import { siteTheme } from "stores/theme";
     siteTheme.subscribe((newValue) => {
         if (newValue === "dark") {
             htmlClasses.add("dark-theme");
         } else if (newValue === "light") {
             htmlClasses.remove("dark-theme");
+        } else if (newValue === "auto") {
+            const prefersDarkMode = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+            );
+
+            if (prefersDarkMode.matches) {
+                htmlClasses.add("dark-theme");
+            }
         }
     });
 

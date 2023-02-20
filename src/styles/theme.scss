@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "@radix-ui/colors/gray";
-@use "@radix-ui/colors/grayDark";
+@use "@radix-ui/colors/sand";
+@use "@radix-ui/colors/sandDark";
 @use "@radix-ui/colors/amber";
 @use "@radix-ui/colors/amberDark";
 @use "@radix-ui/colors/amberA";
@@ -29,8 +29,8 @@ html {
     font-weight: 400;
     line-height: 1.5;
 
-    color: var(--gray12);
-    background-color: var(--gray1);
+    color: var(--amber12);
+    background-color: var(--grayscale1);
 
     transition: background-color var(--transition), color var(--transition);
 }
@@ -61,5 +61,6 @@ $font-sizes: (
     }
 }
 
+@include scheme(grayscale, sand);
 @include scheme(primary, amber);
 @include scheme(primaryA, amberA);
