@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import Icons from "unplugin-icons/vite";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 
@@ -17,5 +18,6 @@ export default defineConfig({
                 },
             },
         },
+        plugins: [Icons({ compiler: "jsx", jsx: "react" })],
     },
 });

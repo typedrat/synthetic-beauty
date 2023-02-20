@@ -1,0 +1,54 @@
+$horizontal-spacing: 1rem;
+$vertical-spacing: 0.5rem;
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+
+    > ul {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 0;
+
+        > li {
+            display: inline-block;
+            margin-bottom: 0;
+
+            list-style: none;
+        }
+
+        &:first-child {
+            margin-left: -$horizontal-spacing;
+        }
+
+        &:last-child {
+            margin-right: -$horizontal-spacing;
+        }
+    }
+}
+
+.navbarItem {
+    display: inline-block;
+    padding: $vertical-spacing $horizontal-spacing;
+    cursor: pointer;
+
+    color: var(--primary11);
+    background-color: transparent;
+
+    transition: color var(--transition) background-color var(--transition);
+
+    // @include addHoverIf.add-hover-if("[aria-current], :focus-visible") {
+    //     background-color: var(--primary4);
+    //     text-decoration: none;
+    // }
+
+    &:active {
+        background-color: var(--primary5);
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+}

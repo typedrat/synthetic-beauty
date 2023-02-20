@@ -1,0 +1,40 @@
+.themeButton {
+    background: unset;
+    border: unset;
+    color: unset;
+    font-family: unset;
+    font-size: unset;
+}
+
+.lightModeToggleLabel,
+.darkModeToggleLabel {
+    display: none;
+
+    height: 1em;
+}
+
+@media (hover) {
+    :global html:not(.dark-theme) {
+        :hover > .darkModeToggleLabel,
+        :not(:hover) > .lightModeToggleLabel {
+            display: inline-block;
+        }
+    }
+
+    :global html.dark-theme {
+        :hover > .lightModeToggleLabel,
+        :not(:hover) > .darkModeToggleLabel {
+            display: inline-block;
+        }
+    }
+}
+
+@media (hover: none) {
+    :global html:not(.dark-theme) .darkModeToggleLabel {
+        display: inline-block;
+    }
+
+    :global html.dark-theme .lightModeToggleLabel {
+        display: inline-block;
+    }
+}
