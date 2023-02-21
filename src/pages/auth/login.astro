@@ -1,12 +1,12 @@
 ---
-import { getClientId } from "auth/spotifyOAuth";
+import { getClientId } from "../../auth/spotifyOAuth";
 
 const clientId = getClientId();
 
 ///
 
-import { getEncryptionKey } from "auth/getEncryptionKey";
-import { isRedirectSafe } from "auth/isRedirectSafe";
+import { getEncryptionKey } from "../../auth/getEncryptionKey";
+import { isRedirectSafe } from "../../auth/isRedirectSafe";
 
 let redirectTo = Astro.url.searchParams.get("redirect");
 
@@ -55,7 +55,7 @@ Astro.cookies.set("csrf-nonce", nonce, {
 </html>
 
 <script>
-    import { generateAuthorizationURL } from "auth/spotifyOAuth";
+    import { generateAuthorizationURL } from "../../auth/spotifyOAuth";
 
     const clientId = document.documentElement.dataset["clientId"];
     const state = document.documentElement.dataset["state"];

@@ -1,7 +1,7 @@
 ---
 import * as jose from "jose";
 
-import { getEncryptionKey } from "auth/getEncryptionKey";
+import { getEncryptionKey } from "../../auth/getEncryptionKey";
 
 const state = Astro.url.searchParams.get("state") || "";
 let csrfNonceValid = false;
@@ -44,8 +44,6 @@ const body = new URLSearchParams({
     redirect_uri,
 });
 
-console.debug("token request parameters:", body);
-
 const clientId = import.meta.env.SPOTIFY_CLIENT_ID;
 const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET;
 const authSlug = Base64.fromByteArray(
@@ -65,7 +63,7 @@ const tokenResponse = await ky.post(
 );
 
 if (!tokenResponse.ok) {
-    console.debug("auth failure:", tokenResponse);
+    console.error("auth failure:", tokenResponse);
 }
 
 const responseCode = tokenResponse.status;
@@ -86,7 +84,7 @@ const responseBody = await tokenResponse.text();
 </html>
 
 <script>
-    import dayjs from "dayjs";
+    import { initialLogin } from "../../stores/userInfo";
 
     const { redirectTo, responseBody: responseBodyStr } =
         document.documentElement.dataset;
@@ -102,15 +100,8 @@ const responseBody = await tokenResponse.text();
         typeof responseBody.refresh_token === "string" &&
         typeof responseBody.expires_in === "number"
     ) {
-        const { access_token, refresh_token } = responseBody;
-        const expiration = dayjs().add(responseBody.expires_in, "second");
-
-        window.localStorage.setItem("accessToken", access_token);
-        window.localStorage.setItem("refreshToken", refresh_token);
-        window.localStorage.setItem(
-            "accessTokenExpiration",
-            expiration.toISOString()
-        );
+        const { access_token, refresh_token, expires_in } = responseBody;
+        initialLogin(access_token, refresh_token, expires_in);
 
         targetPath = redirectTo || "/";
 
