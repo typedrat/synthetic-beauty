@@ -5,7 +5,6 @@ const clientId = getClientId();
 
 ///
 
-import { getEncryptionKey } from "../../auth/getEncryptionKey";
 import { isRedirectSafe } from "../../auth/isRedirectSafe";
 
 let redirectTo = Astro.url.searchParams.get("redirect");
@@ -21,6 +20,8 @@ if (redirectTo === null) {
 
 import * as jose from "jose";
 import { v4 as uuidV4 } from "uuid";
+
+import { getEncryptionKey } from "../../auth/getEncryptionKey";
 
 const site = Astro.site!.toString();
 const nonce = uuidV4();

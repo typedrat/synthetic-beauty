@@ -20,9 +20,11 @@ export default function UserMenu(props: UserMenuProps): JSX.Element {
     const loginParams = new URLSearchParams({ redirect: props.path });
 
     const [inClient, setInClient] = useState(false);
-    useLayoutEffect(() => {
-        setInClient(true);
-    });
+    if (!import.meta.env.SSR) {
+        useLayoutEffect(() => {
+            setInClient(true);
+        });
+    }
 
     let userInfo = useStore(userInfoStore);
 
