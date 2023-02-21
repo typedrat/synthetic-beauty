@@ -8,13 +8,19 @@ export type DarkModeToggleProps = {
     className?: string | undefined;
 };
 
-export function DarkModeToggle(props: DarkModeToggleProps): JSX.Element {
-    const classes = props.className
-        ? [styles.themeButton, props.className].join(" ")
+export function DarkModeToggle({
+    className,
+}: DarkModeToggleProps): JSX.Element {
+    const classes = className
+        ? [styles.themeButton, className].join(" ")
         : styles.themeButton;
 
     return (
-        <button className={classes} onClick={toggleSiteTheme}>
+        <button
+            className={classes}
+            onClick={toggleSiteTheme}
+            aria-label="Toggle light/dark theme"
+        >
             <LightMode className={styles.lightModeToggleLabel} />
             <DarkMode className={styles.darkModeToggleLabel} />
         </button>
