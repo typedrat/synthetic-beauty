@@ -1,13 +1,6 @@
 ---
 export const prerender = true;
 
-if (true) {
-    Astro.response.headers.set(
-        "Cache-Control",
-        `maxage=${60 * 60 * 24 * 30}, must-revalidate`
-    );
-}
-
 import Layout from "../layouts/Layout.astro";
 ---
 
