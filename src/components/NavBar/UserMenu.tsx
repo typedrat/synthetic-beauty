@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import SpotifyIcon from "~icons/bi/spotify";
 
 import {
@@ -20,7 +20,7 @@ export default function UserMenu(props: UserMenuProps): JSX.Element {
     const loginParams = new URLSearchParams({ redirect: props.path });
 
     const [inClient, setInClient] = useState(false);
-    useEffect(() => {
+    useLayoutEffect(() => {
         setInClient(true);
     });
 
