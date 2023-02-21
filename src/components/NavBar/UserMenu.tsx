@@ -1,4 +1,5 @@
 import { useStore } from "@nanostores/react";
+import { useEffect, useState } from "react";
 import SpotifyIcon from "~icons/bi/spotify";
 
 import {
@@ -17,9 +18,15 @@ export type UserMenuProps = {
 
 export default function UserMenu(props: UserMenuProps): JSX.Element {
     const loginParams = new URLSearchParams({ redirect: props.path });
+
+    const [inClient, setInClient] = useState(false);
+    useEffect(() => {
+        setInClient(true);
+    });
+
     let userInfo = useStore(userInfoStore);
 
-    if (userInfo.loggedIn) {
+    if (userInfo.loggedIn && inClient) {
         return (
             <a role="button" href="/auth/logout" className={props.className}>
                 Log Out
