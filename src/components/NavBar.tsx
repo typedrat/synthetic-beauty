@@ -21,10 +21,10 @@ export default function NavBar({ path }: NavBarProps): JSX.Element {
                 </ul>
                 <ul>
                     <li>
-                        <DarkModeToggle className={styles.navbarItem} />
+                        <UserMenu path={path} className={styles.navbarItem} />
                     </li>
                     <li>
-                        <UserMenu path={path} className={styles.navbarItem} />
+                        <DarkModeToggle className={styles.navbarItem} />
                     </li>
                 </ul>
             </nav>

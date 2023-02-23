@@ -28,21 +28,29 @@ export default function UserMenu(props: UserMenuProps): JSX.Element {
 
     let userInfo = useStore(userInfoStore);
 
-    if (userInfo.loggedIn && inClient) {
-        return (
-            <a role="button" href="/auth/logout" className={props.className}>
-                Log Out
-            </a>
-        );
+    if (inClient) {
+        if (userInfo.loggedIn) {
+            return (
+                <a
+                    role="button"
+                    href="/auth/logout"
+                    className={props.className}
+                >
+                    Log Out
+                </a>
+            );
+        } else {
+            return (
+                <a
+                    role="button"
+                    href={`/auth/login?${loginParams}`}
+                    className={props.className}
+                >
+                    <SpotifyIcon /> Log In
+                </a>
+            );
+        }
     } else {
-        return (
-            <a
-                role="button"
-                href={`/auth/login?${loginParams}`}
-                className={props.className}
-            >
-                <SpotifyIcon /> Log In
-            </a>
-        );
+        return <></>;
     }
 }
