@@ -14,7 +14,7 @@ const expiresIn = 7 * 24 * 60 * 60;
 
 export async function get(ctx: APIContext) {
     const youtube = await Innertube.create();
-    const client = new S3Client({ region: "us-east-1" });
+    const client = new S3Client({ region: "us-west-1" });
 
     const id = ctx.params.id!;
 
