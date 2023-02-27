@@ -3,10 +3,10 @@ import ky from "ky-universal";
 
 import { generateToken, validateToken } from "auth/tokens";
 import {
-    LoginToken,
     SessionData,
     generateTokenRequest,
     loginNonce,
+    loginTokenValidator,
     sessionNonce,
     sessionToken,
     tokenRequestResponseValidator,
@@ -23,7 +23,7 @@ export async function get(ctx: APIContext): Promise<Response> {
         site,
         nonce || "",
         token || "",
-        (x): x is LoginToken => true
+        loginTokenValidator
     );
 
     if (!state) {

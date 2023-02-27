@@ -77,20 +77,18 @@ const { title } = Astro.props;
 <script>
     let htmlClasses = document.documentElement.classList;
 
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (prefersDarkMode.matches) {
+        htmlClasses.add("dark-theme");
+    }
+
     import { siteTheme } from "../stores/theme";
     siteTheme.subscribe((newValue) => {
         if (newValue === "dark") {
             htmlClasses.add("dark-theme");
         } else if (newValue === "light") {
             htmlClasses.remove("dark-theme");
-        } else if (newValue === "auto") {
-            const prefersDarkMode = window.matchMedia(
-                "(prefers-color-scheme: dark)"
-            );
-
-            if (prefersDarkMode.matches) {
-                htmlClasses.add("dark-theme");
-            }
         }
     });
 

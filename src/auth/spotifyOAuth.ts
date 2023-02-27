@@ -30,9 +30,20 @@ function getClientSecret(): string {
     return clientSecret;
 }
 
-export type LoginToken = {
+export interface LoginToken {
     redirectTo: string;
-};
+}
+
+export function loginTokenValidator(token: unknown): token is LoginToken {
+    return (
+        typeof token === "object" &&
+        token !== null &&
+        "redirectTo" in token &&
+        typeof token.redirectTo === "string"
+    );
+}
+
+///
 
 function getRedirectURI() {
     return new URL(
