@@ -9,7 +9,7 @@ import { Upload } from "@aws-sdk/lib-storage";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Innertube } from "youtubei.js";
 
-const Bucket = "audio-cache";
+const Bucket = "synthetic-beauty-audio-cache";
 const expiresIn = 7 * 24 * 60 * 60;
 
 export async function get(ctx: APIContext) {
