@@ -1,11 +1,17 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
-        "target": "ES2017",
+        "target": "ESNext",
         "module": "ESNext",
         "baseUrl": "./src",
         "jsx": "react-jsx",
         "jsxImportSource": "react",
-        "types": ["unplugin-icons/types/react"]
+        "types": [
+            "node",
+            "react",
+            "react-dom",
+            "uuid",
+            "unplugin-icons/types/react"
+        ]
     }
 }
