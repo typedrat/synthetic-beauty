@@ -9,12 +9,16 @@ import { Upload } from "@aws-sdk/lib-storage";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Innertube } from "youtubei.js";
 
-const Bucket = "synthetic-beauty-audio-cache";
+const Bucket = import.meta.env.AUDIO_CACHE_BUCKET_NAME;
 const expiresIn = 7 * 24 * 60 * 60;
 
 export async function get(ctx: APIContext) {
+    if (!Bucket) {
+        throw new Error("AUDIO_CACHE_BUCKET_NAME should not be undefined!");
+    }
+
     const youtube = await Innertube.create();
-    const client = new S3Client({ region: "us-west-1" });
+    const client = new S3Client({});
 
     const id = ctx.params.id!;
 
