@@ -12,13 +12,13 @@ import { Innertube } from "youtubei.js";
 const Bucket = import.meta.env.AUDIO_CACHE_BUCKET_NAME;
 const expiresIn = 7 * 24 * 60 * 60;
 
+const client = new S3Client({});
+const youtube = await Innertube.create();
+
 export async function get(ctx: APIContext) {
     if (!Bucket) {
         throw new Error("AUDIO_CACHE_BUCKET_NAME should not be undefined!");
     }
-
-    const youtube = await Innertube.create();
-    const client = new S3Client({});
 
     const id = ctx.params.id!;
 
