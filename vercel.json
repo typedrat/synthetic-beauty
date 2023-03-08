@@ -1,0 +1,9 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+
+    "functions": {
+        "api/yt_cache/[id].ts": {
+            "memory": 256
+        }
+    }
+}
