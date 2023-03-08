@@ -1,6 +1,8 @@
 {
-    "extends": "astro/tsconfigs/strictest",
+    "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        "target": "ES2017",
+        "module": "ESNext",
         "baseUrl": "./src",
         "jsx": "react-jsx",
         "jsxImportSource": "react",
