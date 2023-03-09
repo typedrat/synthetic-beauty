@@ -8,7 +8,7 @@ export default defineConfig({
     site: "https://synthetic.beauty",
     integrations: [react()],
     output: "server",
-    adapter: vercel(),
+    adapter: vercel({ analytics: true }),
 
     vite: {
         css: {
