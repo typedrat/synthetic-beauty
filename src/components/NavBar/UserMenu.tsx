@@ -2,14 +2,7 @@ import { useStore } from "@nanostores/react";
 import { useLayoutEffect, useState } from "react";
 import SpotifyIcon from "~icons/bi/spotify";
 
-import {
-    refreshIfExpired,
-    userInfo as userInfoStore,
-} from "../../stores/userInfo";
-
-if (!import.meta.env.SSR) {
-    refreshIfExpired();
-}
+import { userInfo as userInfoStore } from "../../stores/userInfo";
 
 export type UserMenuProps = {
     className?: string | undefined;
