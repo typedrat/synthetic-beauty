@@ -2,10 +2,6 @@ import { Auth } from "@auth/core";
 import type { AuthAction, AuthConfig, Session } from "@auth/core/types";
 import type { APIContext } from "astro";
 
-if (!globalThis.crypto) {
-    globalThis.crypto = require("node:crypto").webcrypto;
-}
-
 export interface AstroAuthConfig extends AuthConfig {
     /**
      * Defines the base path for the auth routes.
