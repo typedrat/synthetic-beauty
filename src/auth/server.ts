@@ -2,7 +2,9 @@ import { Auth } from "@auth/core";
 import type { AuthAction, AuthConfig, Session } from "@auth/core/types";
 import type { APIContext } from "astro";
 
-globalThis.crypto ??= require("node:crypto").webcrypto;
+if (!globalThis.crypto) {
+    globalThis.crypto = require("node:crypto").webcrypto;
+}
 
 export interface AstroAuthConfig extends AuthConfig {
     /**
