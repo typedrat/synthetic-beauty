@@ -1,4 +1,5 @@
 import Email from "@auth/core/providers/email";
+import Github from "@auth/core/providers/github";
 import { DynamoDB } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBAdapter } from "@next-auth/dynamodb-adapter";
@@ -15,6 +16,11 @@ const dynamodbClient = DynamoDBDocument.from(new DynamoDB({}), {
 
 export const authConfig: AstroAuthConfig = {
     providers: [
+        // @ts-expect-error: issue https://github.com/nextauthjs/next-auth/issues/6174
+        Github({
+            clientId: import.meta.env.GITHUB_CLIENT,
+            clientSecret: import.meta.env.GITHUB_SECRET,
+        }),
         // Email oesn't work, not sure why.
         Email({
             server: import.meta.env.EMAIL_SERVER,
