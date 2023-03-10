@@ -33,6 +33,7 @@
         "astro": "^2.1.2",
         "dayjs": "^1.11.7",
         "nanostores": "^0.7.4",
+        "nodemailer": "^6.9.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sanitize.css": "^13.0.0",
@@ -42,6 +43,7 @@
     "devDependencies": {
         "@aws-sdk/types": "^3.272.0",
         "@types/node": "^18.14.6",
+        "@types/nodemailer": "^6.4.7",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
         "@types/uuid": "^9.0.1",
@@ -57,7 +59,8 @@
             ]
         },
         "patchedDependencies": {
-            "@next-auth/dynamodb-adapter@3.0.1": "patches/@next-auth__dynamodb-adapter@3.0.1.patch"
+            "@next-auth/dynamodb-adapter@3.0.1": "patches/@next-auth__dynamodb-adapter@3.0.1.patch",
+            "@auth/core@0.5.1": "patches/@auth__core@0.5.1.patch"
         }
     }
 }
