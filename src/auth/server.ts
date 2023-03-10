@@ -34,11 +34,11 @@ const notFound = new Response(null, {
 function AstroAuthHandler(prefix: string, authOptions: AstroAuthConfig) {
     return async (ctx: APIContext): Promise<Response> => {
         const pathname = ctx.url.pathname;
+        const action = pathname
+            .slice(prefix.length + 1)
+            .split("/")[0] as AuthAction;
 
-        if (
-            pathname.startsWith(prefix) &&
-            actions.some((x) => pathname.includes(x))
-        ) {
+        if (pathname.startsWith(prefix) && actions.includes(action)) {
             return await Auth(ctx.request, authOptions);
         } else {
             return notFound;
