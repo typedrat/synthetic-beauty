@@ -14,19 +14,14 @@
     "dependencies": {
         "@astrojs/react": "^2.1.0",
         "@astrojs/vercel": "^3.2.0",
-        "@auth/core": "^0.5.1",
         "@aws-sdk/abort-controller": "^3.272.0",
-        "@aws-sdk/client-dynamodb": "^3.287.0",
         "@aws-sdk/client-s3": "^3.287.0",
-        "@aws-sdk/lib-dynamodb": "^3.287.0",
         "@aws-sdk/lib-storage": "^3.287.0",
         "@aws-sdk/s3-request-presigner": "^3.287.0",
-        "@aws-sdk/smithy-client": "^3.279.0",
         "@fontsource/ibm-plex-mono": "^4.5.13",
         "@iconify-json/bi": "^1.1.15",
         "@nanostores/persistent": "^0.7.0",
         "@nanostores/react": "^0.4.1",
-        "@next-auth/dynamodb-adapter": "^3.0.1",
         "@radix-ui/colors": "^0.1.8",
         "@svgr/core": "^6.5.1",
         "@vercel/edge": "^0.3.1",
@@ -34,7 +29,6 @@
         "astro": "^2.1.2",
         "dayjs": "^1.11.7",
         "nanostores": "^0.7.4",
-        "nodemailer": "^6.9.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sanitize.css": "^13.0.0",
@@ -44,7 +38,6 @@
     "devDependencies": {
         "@aws-sdk/types": "^3.272.0",
         "@types/node": "^18.14.6",
-        "@types/nodemailer": "^6.4.7",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
         "@types/uuid": "^9.0.1",
@@ -52,16 +45,5 @@
         "prettier-plugin-astro": "^0.8.0",
         "sass": "^1.58.3",
         "typescript": "^4.9.5"
-    },
-    "pnpm": {
-        "peerDependencyRules": {
-            "ignoreMissing": [
-                "next-auth"
-            ]
-        },
-        "patchedDependencies": {
-            "@next-auth/dynamodb-adapter@3.0.1": "patches/@next-auth__dynamodb-adapter@3.0.1.patch",
-            "@auth/core@0.5.1": "patches/@auth__core@0.5.1.patch"
-        }
     }
 }
