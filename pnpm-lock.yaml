@@ -32,6 +32,7 @@ specifiers:
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
   '@types/uuid': ^9.0.1
+  '@vercel/edge': ^0.3.1
   '@vercel/node': ^2.9.12
   astro: ^2.1.2
   dayjs: ^1.11.7
@@ -65,6 +66,7 @@ dependencies:
   '@next-auth/dynamodb-adapter': 3.0.1_pxca3rxceexnvv2o3db5jjy4mu_jpar4qsjix3mxwbqkb4zbqvjxe
   '@radix-ui/colors': 0.1.8
   '@svgr/core': 6.5.1
+  '@vercel/edge': 0.3.1
   '@vercel/node': 2.9.12
   astro: 2.1.2_tbu6ibuzbmq2zng52hwcifltki
   dayjs: 1.11.7
@@ -2274,6 +2276,10 @@ packages:
 
   /@vercel/build-utils/6.3.4:
     resolution: {integrity: sha512-7qhJP/5yz/9aBmkJirRxcTrvrLdV6PUT9DpxsILnfdw7WAJ5KSa59kBj8Aw4VhW4CqK4pFcuMMHr73aYRcEmkg==}
+    dev: false
+
+  /@vercel/edge/0.3.1:
+    resolution: {integrity: sha512-NdJxoaUI/AMvSu9dBM5MA1mxzk+Xo1sMrjyNRtNGsH5iKYyMdMWNUEvHdkyn1kN6opM03rQHYOYgXhBwNyIfdQ==}
     dev: false
 
   /@vercel/nft/0.22.6:

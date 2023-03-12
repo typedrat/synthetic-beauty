@@ -1,4 +1,4 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { json, RequestContext } from "@vercel/edge";
 import {
     S3Client,
     HeadObjectCommand,
@@ -15,19 +15,26 @@ const expiresIn = 7 * 24 * 60 * 60;
 const client = new S3Client({});
 const youtube = await Innertube.create();
 
-export default async function handler(
-    request: VercelRequest,
-    response: VercelResponse
-) {
-    if (!Bucket) {
-        throw new Error("AUDIO_CACHE_BUCKET_NAME should not be undefined!");
-    }
+function getId(request: Request): string {
+    const params = new URL(request.url).searchParams;
 
-    const id = request.query.id;
+    const id = params.get("id");
     if (typeof id !== "string") {
         throw new Error(`Invalid source ID: ${id}`);
     }
 
+    return id;
+}
+
+export default async function handler(
+    request: Request,
+    context: RequestContext
+): Promise<Response> {
+    if (!Bucket) {
+        throw new Error("AUDIO_CACHE_BUCKET_NAME should not be undefined!");
+    }
+
+    const id = getId(request);
     const Key = `${id}.mp4`;
 
     try {
@@ -54,5 +61,7 @@ export default async function handler(
     const getCommand = new GetObjectCommand({ Bucket, Key });
     const url = await getSignedUrl(client, getCommand, { expiresIn });
 
-    response.status(200).json({ url, expiresIn });
+    return json({ url, expiresIn });
 }
+
+export const config = { runtime: "edge" };
