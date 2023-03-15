@@ -1,7 +1,8 @@
 import { defineConfig } from "astro/config";
-import Icons from "unplugin-icons/vite";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/edge";
+
+import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
