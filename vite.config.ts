@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import nodePolyfills from "rollup-plugin-polyfill-node";
 import mdx from "@mdx-js/rollup";
 import UnoCSS from "unocss/vite";
 import { presetIcons, presetUno, presetWebFonts } from "unocss";
