@@ -1,17 +1,14 @@
 {
-    "extends": "astro/tsconfigs/strict",
+    "extends": "@vercel/style-guide/typescript",
     "compilerOptions": {
-        "target": "ESNext",
+        "target": "ES2020",
         "module": "ESNext",
-        "baseUrl": "./src",
-        "jsx": "react-jsx",
-        "jsxImportSource": "react",
-        "types": [
-            "node",
-            "react",
-            "react-dom",
-            "uuid",
-            "unplugin-icons/types/react"
-        ]
+        "moduleResolution": "Node",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "types": ["vite/client", "unplugin-icons/types/react"],
+        "jsx": "react",
+        "plugins": [{
+            "name": "vite-plugin-iso-import"
+        }]
     }
 }

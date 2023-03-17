@@ -1,8 +1,0 @@
-{
-    "files.insertFinalNewline": true,
-    "files.associations": {
-        ".env.*": "properties"
-    },
-    "files.eol": "\n",
-    "typescript.tsdk": "node_modules\\typescript\\lib"
-}

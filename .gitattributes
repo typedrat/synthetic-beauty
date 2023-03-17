@@ -1,5 +1,1 @@
-# 2010
-* -crlf
-
-# 2020
-* text eol=lf
+* text=auto eol=lf
