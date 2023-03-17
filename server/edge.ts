@@ -2,10 +2,6 @@ import { RequestCookies } from "@edge-runtime/cookies";
 import type { RequestContext } from "@vercel/edge";
 import { renderPage } from "vite-plugin-ssr";
 
-export const config = {
-    runtime: "edge",
-};
-
 // eslint-disable-next-line import/no-default-export
 export default async function ssr(request: Request, _context: RequestContext): Promise<Response> {
     const cookies = new RequestCookies(request.headers);

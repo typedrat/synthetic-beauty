@@ -69,7 +69,6 @@ export default defineConfig(({ mode }) => {
                 {
                     source: "./server/edge.ts",
                     destination: "ssr_",
-                    edge: true,
                 },
             ],
             prerender: false,
