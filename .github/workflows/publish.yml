@@ -12,10 +12,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 7.29.1
     - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
         cache: 'pnpm'
+    - run: pnpm install --frozen-lockfile 
     - run: pnpm vite build
     - run: pnpm wrangler publish -e production
