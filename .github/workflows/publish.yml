@@ -23,3 +23,5 @@ jobs:
     - run: pnpm install --frozen-lockfile 
     - run: pnpm vite build
     - run: pnpm wrangler publish -e production
+      env:
+        CLOUDFLARE_API_KEY: ${{ secrets.SuperSecret }}
