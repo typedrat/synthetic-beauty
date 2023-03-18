@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "dev": "tsx ./dev-server/index.ts",
-        "preview": "vite build && wrangler pages dev ./dist/client"
+        "preview": "vite build && wrangler dev ./dist/client"
     },
     "dependencies": {
         "@cloudflare/kv-asset-handler": "^0.3.0",
