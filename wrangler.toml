@@ -1,0 +1,17 @@
+name = "synthetic-beauty-dev"
+compatibility_date = "2023-03-18"
+
+main="./worker/index.ts"
+workers_dev = true
+node_compat = true
+
+[site]
+bucket = "./dist/client"
+
+[dev]
+port = 3000
+
+[env.production]
+name = "synthetic-beauty"
+vars = { ENV = "production" }
+route = { pattern = "synthetic.beauty", custom_domain = true }

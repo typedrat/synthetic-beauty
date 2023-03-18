@@ -1,5 +1,6 @@
 # build output
 dist/
+/_worker.bundle
 
 # dependencies
 node_modules/
@@ -16,5 +17,4 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-.vercel
 *~

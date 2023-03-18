@@ -1,8 +1,8 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import type { RequestHandler } from "express";
 import express from "express";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 import { renderPage } from "vite-plugin-ssr";
 

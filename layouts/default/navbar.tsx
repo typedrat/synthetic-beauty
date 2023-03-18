@@ -41,6 +41,8 @@ export function NavBar(): JSX.Element {
                             alt=""
                             aria-hidden
                             className="inline-block align-middle w-2em m-r-0.5em rounded bg-primary9"
+                            height="2em"
+                            width="2em"
                             src="/logo.svg"
                         />
                         Synthetic Beauty
