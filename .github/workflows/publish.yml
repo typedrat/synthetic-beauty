@@ -8,7 +8,7 @@ env:
   CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +21,11 @@ jobs:
       with:
         node-version: '18.x'
         cache: 'pnpm'
-    - run: pnpm install --frozen-lockfile 
-    - run: pnpm vite build
-    - run: pnpm wrangler publish -e production
+    - name: Install NPM dependencies
+      run: pnpm install --frozen-lockfile 
+    - name: Build site
+      run: pnpm vite build
+    - name: Check Cloudflare API key
+      run: echo $CLOUDFLARE_API_KEY
+    - name: Deploy site
+      run: pnpm wrangler publish -e production
