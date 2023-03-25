@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useDarkMode } from "usehooks-ts";
-import type { LayoutArgs } from "../../renderer/types";
+import type { LayoutArgs } from "@/renderer/types";
 import { NavBar } from "./navbar";
 
 export function LayoutDefault({ children }: LayoutArgs): JSX.Element {

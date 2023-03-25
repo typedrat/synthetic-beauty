@@ -7,8 +7,9 @@
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "types": ["vite/client", "unplugin-icons/types/react"],
         "jsx": "react",
-        "plugins": [{
-            "name": "vite-plugin-iso-import"
-        }]
+        "resolveJsonModule": true,
+        "paths": {
+            "@/*": ["./*"]
+        }
     }
 }

@@ -1,17 +1,24 @@
 import { renderToStream } from "react-streaming/server";
+import type { Optional } from "utility-types";
 import { escapeInject } from "vite-plugin-ssr";
 import type { PageContextServer } from "./types";
 import { getPageDescription, getPageTitle } from "./get-page-info";
 import { wrappedPage } from "./wrapped-page";
 
-export const passToClient = ["$$typeof", "pageProps", "documentProps"];
+export const passToClient = ["$$typeof", "pageProps", "documentProps", "routeParams"];
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export async function render(pageContext: PageContextServer) {
+export async function render(pageContext: Optional<PageContextServer, "Page">) {
     const { userAgent } = pageContext;
-    const page = wrappedPage(pageContext);
 
-    const pageHtmlStream = await renderToStream(page, { userAgent });
+    let pageHtmlStream;
+    if (pageContext.Page) {
+        const page = await wrappedPage(pageContext as PageContextServer);
+
+        pageHtmlStream = await renderToStream(page, { userAgent });
+    } else {
+        pageHtmlStream = "";
+    }
 
     const title = getPageTitle(pageContext);
     const desc = getPageDescription(pageContext);
@@ -50,10 +57,5 @@ export async function render(pageContext: PageContextServer) {
         </body>
     </html>`;
 
-    return {
-        documentHtml,
-        pageContext: {
-            // We can add some `pageContext` here, which is useful if we want to do page redirection https://vite-plugin-ssr.com/page-redirection
-        },
-    };
+    return { documentHtml };
 }

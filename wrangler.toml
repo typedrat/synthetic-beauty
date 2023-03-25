@@ -1,7 +1,7 @@
 name = "synthetic-beauty-dev"
 compatibility_date = "2023-03-18"
 
-main="./worker/index.ts"
+main = "./server/cloudflare.ts"
 workers_dev = true
 node_compat = true
 
@@ -13,5 +13,9 @@ port = 3000
 
 [env.production]
 name = "synthetic-beauty"
-vars = { ENV = "production" }
 route = { pattern = "synthetic.beauty", custom_domain = true }
+
+[env.production.vars]
+ENV = "production"
+VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhbGNlbGFsc2JmeG1veW9kemZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg0NDM4MTUsImV4cCI6MTk5NDAxOTgxNX0.SDg_wPlSvTWOBXRld0DU5e_6hgXlTo51L0c1oTWq1Bw"
+VITE_SUPABASE_URL = "https://salcelalsbfxmoyodzfy.supabase.co"

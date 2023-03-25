@@ -21,6 +21,8 @@ module.exports = {
         },
     },
     rules: {
+        "import/no-default-export": "off",
         "no-console": "off",
+        "no-else-return": "off",
     },
 };

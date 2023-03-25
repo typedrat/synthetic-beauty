@@ -10,15 +10,15 @@ export const clientRouting = true;
 export const hydrationCanBeAborted = true;
 
 let root: Root | undefined;
-export function render(pageContext: PageContextClient): void {
-    const page = wrappedPage(pageContext);
+export async function render(pageContext: PageContextClient): Promise<void> {
+    const page = await wrappedPage(pageContext);
     const container = document.getElementById("page-view");
 
     if (!container) {
         throw new Error("Couldn't locate application container!");
     }
 
-    if (pageContext.isHydration) {
+    if (container.innerHTML !== "" && pageContext.isHydration) {
         root = hydrateRoot(container, page);
     } else {
         if (!root) {

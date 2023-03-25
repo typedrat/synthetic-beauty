@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import * as React from "react";
-import type { PageContext } from "./types";
+import type { PageContext } from "@/renderer/types";
 
 const { createContext, useContext } = React;
 

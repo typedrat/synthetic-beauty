@@ -1,3 +1,4 @@
+import type { CookieSerializeOptions } from "cookie";
 import type { PageContextBuiltIn } from "vite-plugin-ssr";
 import type { PageContextBuiltInClient } from "vite-plugin-ssr/client/router";
 
@@ -15,6 +16,8 @@ export interface LayoutArgs {
 
 export interface PageContextCustom {
     cookies: Record<string, string>;
+    setCookie: (name: string, value: string, options?: CookieSerializeOptions) => void;
+    getRequestHeader: (name: string) => string | string[] | undefined;
     Page: Page;
     pageProps?: PageProps;
     urlPathname: string;

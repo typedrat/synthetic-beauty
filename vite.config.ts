@@ -7,11 +7,13 @@ import Icons from "unplugin-icons/vite";
 import react from "@vitejs/plugin-react";
 import ssr from "vite-plugin-ssr/plugin";
 
-// eslint-disable-next-line import/no-default-export
 export default defineConfig(({ mode }) => {
     const isProduction = mode === "production";
 
     return {
+        esbuild: {
+            drop: isProduction ? ["debugger", "console"] : undefined,
+        },
         plugins: [
             {
                 enforce: "pre",
@@ -45,16 +47,18 @@ export default defineConfig(({ mode }) => {
             react(),
             ssr(),
         ],
-        server: {
-            port: 3000,
-        },
-        esbuild: {
-            drop: isProduction ? ["debugger", "console"] : undefined,
+        resolve: {
+            alias: {
+                "@": __dirname,
+            },
         },
         rollupOptions: {
             output: {
                 preserveModules: true,
             },
+        },
+        server: {
+            port: 3000,
         },
         ssr: {
             noExternal: ["usehooks-ts"],
